@@ -1,0 +1,1 @@
+Clean alpha release of RandomDay for Abiotic Factor dedicated servers. Uses a family-based 17-day next-reboot rotation, writes complete SandboxSettings.ini profiles, keeps safety limits enforced, and includes optional adapters for separately installed supported mods.

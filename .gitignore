@@ -1,0 +1,26 @@
+# Runtime/generated state
+RandomDay-Mod/runtime/
+RandomDay-Mod/web_export/
+*.pending
+*.last_good
+*.bak
+*.backup
+
+# Logs
+*.log
+UE4SS.log
+AbioticFactor.log
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# Release scratch
+_dist/
+_build/

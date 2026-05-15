@@ -1,0 +1,29 @@
+# CODEOWNERS
+
+# Default owner for the full repository.
+* @Xixicor
+
+# Keep repository governance files owned explicitly.
+/.github/ @Xixicor
+/.github/CODEOWNERS @Xixicor
+
+# Runtime mod source.
+/RandomDay/ @Xixicor
+
+# Documentation.
+/docs/ @Xixicor
+/README.md @Xixicor
+/README.es.md @Xixicor
+/LICENSE @Xixicor
+/NOTICE.md @Xixicor
+/CONTRIBUTING.md @Xixicor
+/SECURITY.md @Xixicor
+
+# Website embed/export files.
+/website/ @Xixicor
+
+# Validation and release tooling.
+/tools/ @Xixicor
+
+# Release artifacts.
+/releases/ @Xixicor

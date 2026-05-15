@@ -1,0 +1,351 @@
+[center][b]RandomDay[/b]
+Family-Based 17-Day Rotation for Abiotic Factor Dedicated Servers
+
+[youtube]1HsnSpSSl80[/youtube]
+
+[url=https://www.nexusmods.com/abioticfactor/mods/212?published=1]Nexus Mods Page[/url]
+|
+[url=https://github.com/Xixicor/RandomDay-Mod]GitHub / Source / Documentation[/url]
+|
+[url=https://studio.speclang.pro/]Olmteka Studio[/url][/center]
+
+[line]
+
+[b]Description[/b]
+
+RandomDay is a UE4SS Lua mod for Abiotic Factor dedicated servers. It prepares changing sandbox profiles for hosted servers using a safer next-reboot queue model instead of forcing live sandbox changes into a running server.
+
+RandomDay is built for server owners who want controlled gameplay variation: survival pressure, enemy pressure, loot pacing, time behavior, weather feel, recovery days, hard days, and themed server runs.
+
+The mod writes the next complete SandboxSettings.ini profile after the server has already started. The next restart then loads that prepared profile cleanly.
+
+Server starts
+-> Abiotic Factor loads the current SandboxSettings.ini
+-> UE4SS loads RandomDay
+-> RandomDay reads the active profile marker
+-> RandomDay prepares the next profile
+-> the next restart loads that prepared profile
+
+This keeps the current boot stable and makes each new server day predictable, documented, and recoverable.
+
+[line]
+
+[b]17-Day Family Rotation[/b]
+
+RandomDay uses a family-based 17-day system:
+
+17 playstyle families
+17 days per family
+
+The server chooses one playstyle family, keeps it active through Day 17, and advances one day per restart. After Day 17, another family can be selected for the next full run.
+
+Example:
+
+Biohazard Day 1
+Biohazard Day 2
+Biohazard Day 3
+...
+Biohazard Day 17
+
+This makes the server feel varied over time, but consistent inside each run.
+
+[b]Playstyle Families[/b]
+
+[list]
+[*]Action
+[*]Survival
+[*]Stealth
+[*]Horde
+[*]Boss Hunt
+[*]Scavenger
+[*]Builder
+[*]Expedition
+[*]Security Lockdown
+[*]Biohazard
+[*]Anteverse
+[*]Nightmare
+[*]Weathered
+[*]Precision
+[*]Logistics
+[*]Experimental
+[*]Compliance Test
+[/list]
+
+[line]
+
+[b]What RandomDay Changes[/b]
+
+RandomDay prepares full sandbox profiles for Abiotic Factor dedicated servers.
+
+Main target file:
+
+AbioticFactor/Saved/Config/WindowsServer/SandboxSettings.ini
+
+RandomDay can change:
+
+[list]
+[*][b]Difficulty:[/b] GameDifficulty, enemy health, enemy damage, enemy accuracy.
+[*][b]Survival:[/b] hunger, thirst, fatigue, continence, food spoilage, sink refill.
+[*][b]Loot and progression:[/b] loot respawn, stack size, item weight, durability, bonus perk points.
+[*][b]Time and environment:[/b] day/night state, day/night speed, weather frequency, power behavior.
+[*][b]Combat pressure:[/b] enemy spawn rate, detection speed, deployable damage.
+[*][b]Player utility:[/b] base inventory size, first starting weapon, research minigame state.
+[/list]
+
+RandomDay keeps important safety rules enforced in every generated profile:
+
+HardcoreMode=False
+AllowIronMode=False
+StructuralSupportLimit=0
+BridgeSupports=0
+
+[line]
+
+[b]Optional Supported Mods[/b]
+
+RandomDay does not include, copy, rehost, or redistribute code from supported third-party mods.
+
+The download contains only RandomDay-owned files. Supported-mod behavior is handled through adapter scripts. These adapters can patch exposed settings in other mods only if the server owner has already installed those mods separately.
+
+Supported mods must be downloaded separately from their original pages.
+
+Adapter files are located here:
+
+RandomDay/Scripts/ax_external/adapters/
+
+Adapter setup is controlled here:
+
+RandomDay/Scripts/ax_config/server.lua
+
+[b]Supported Adapters[/b]
+
+[list]
+[*][b]Chaotic Spawn Engine / DynamicSpawns by FalseLight / FalseLight27[/b]
+
+Tested version:
+0.8.5 Hotfix 1
+
+Adapter file:
+RandomDay/Scripts/ax_external/adapters/dynamic_spawns.lua
+
+Target file:
+DynamicSpawns/Scripts/SharedData.lua
+
+RandomDay can set:
+spawn pressure, cooldowns, caps, spawn distances, portal storm chance, order breach chance, boss chance, hot zones, burst behavior, and message toggles.
+
+[*][b]RandomDay Encounter Director for DynamicSpawns[/b]
+
+Tested with:
+RandomDay-owned exposed fields in DynamicSpawns SharedData.lua
+
+Adapter file:
+RandomDay/Scripts/ax_external/adapters/encounter_director.lua
+
+Target file:
+DynamicSpawns/Scripts/SharedData.lua
+
+RandomDay can set:
+family/day encounter identity, encounter tier, encounter theme, mixed encounter chance, budget, cooldown, and profile-specific encounter behavior.
+
+[*][b]Lethal Lasers by FalseLight / FalseLight27[/b]
+
+Tested version:
+1.0 UE4SS
+
+Adapter file:
+RandomDay/Scripts/ax_external/adapters/lethal_lasers.lua
+
+Target file:
+LethalLasers/Scripts/main.lua
+
+RandomDay can set:
+laser hazard level, emitter damage, environmental emitter settings, reflector damage, and prism damage.
+
+[*][b]ANTE Up by combatken[/b]
+
+Tested version:
+0.26
+
+Adapter file:
+RandomDay/Scripts/ax_external/adapters/ante_up.lua
+
+Target file:
+AnteUp/scripts/Settings.lua
+
+RandomDay can set:
+respawn pressure, Antevariant frequency, and debug/dev command safety values.
+[/list]
+
+[line]
+
+[b]Adapter Destination Setup[/b]
+
+If your supported mods are installed in the normal UE4SS Mods folder, the default adapter paths should work:
+
+AbioticFactor/Binaries/Win64/ue4ss/Mods/
+- RandomDay/
+- DynamicSpawns/
+- LethalLasers/
+- AnteUp/
+
+If your folder names are different, edit the adapter's config_candidates list.
+
+[b]DynamicSpawns / Chaotic Spawn Engine[/b]
+
+Edit:
+
+RandomDay/Scripts/ax_external/adapters/dynamic_spawns.lua
+
+Default target:
+
+../DynamicSpawns/Scripts/SharedData.lua
+
+[b]RandomDay Encounter Director[/b]
+
+Edit:
+
+RandomDay/Scripts/ax_external/adapters/encounter_director.lua
+
+Default target:
+
+../DynamicSpawns/Scripts/SharedData.lua
+
+[b]Lethal Lasers[/b]
+
+Edit:
+
+RandomDay/Scripts/ax_external/adapters/lethal_lasers.lua
+
+Default target:
+
+../LethalLasers/Scripts/main.lua
+
+[b]ANTE Up[/b]
+
+Edit:
+
+RandomDay/Scripts/ax_external/adapters/ante_up.lua
+
+Default target:
+
+../AnteUp/scripts/Settings.lua
+
+[b]Adapter List[/b]
+
+The active adapter list is configured in:
+
+RandomDay/Scripts/ax_config/server.lua
+
+Example:
+
+external_mods = {
+    enabled = true,
+    optional_by_default = true,
+    patch_only_existing_keys = true,
+    backup_before_write = true,
+    adapters = {
+        "lethal_lasers",
+        "dynamic_spawns",
+        "encounter_director",
+        "ante_up"
+    }
+}
+
+Missing supported mods are skipped safely by default.
+
+[line]
+
+[b]Compatibility Rules[/b]
+
+[list]
+[*]Supported mods are optional.
+[*]Supported mods must be installed separately by the server owner.
+[*]RandomDay does not bundle supported mod code.
+[*]RandomDay only patches exposed settings.
+[*]RandomDay backs up files before patching when enabled.
+[*]RandomDay patches only existing keys by default.
+[/list]
+
+The safest default is:
+
+patch_only_existing_keys = true
+
+[line]
+
+[b]Installation Instructions[/b]
+
+[list=1]
+[*]Install UE4SS for your Abiotic Factor dedicated server.
+[*]Download and extract RandomDay.
+[*]Place the mod folder here:
+[/list]
+
+AbioticFactor/Binaries/Win64/ue4ss/Mods/RandomDay/
+
+Confirm these files exist:
+
+RandomDay/enabled.txt
+RandomDay/Scripts/main.lua
+
+Open:
+
+AbioticFactor/Binaries/Win64/ue4ss/Mods/mods.txt
+
+Add or confirm:
+
+RandomDay : 1
+
+Then:
+
+[list=1]
+[*]Restart the server once to let RandomDay prepare the first profile.
+[*]Restart again to load the prepared profile.
+[/list]
+
+Always back up your server files, saves, SandboxSettings.ini, UE4SS files, and mod configuration before installing or updating.
+
+[line]
+
+[b]Requirements[/b]
+
+[list]
+[*]Abiotic Factor dedicated server.
+[*]UE4SS installed and working on the server.
+[*]Access to the server file system.
+[*]Ability to restart the server manually or through a hosting panel.
+[*]A writable dedicated-server SandboxSettings.ini.
+[/list]
+
+Recommended optional mods are not included and must be installed separately if you want adapter behavior.
+
+[line]
+
+[b]Project Links[/b]
+
+[list]
+[*]Nexus Mods Page: [url=https://www.nexusmods.com/abioticfactor/mods/212?published=1]https://www.nexusmods.com/abioticfactor/mods/212?published=1[/url]
+[*]GitHub / Source / Documentation: [url=https://github.com/Xixicor/RandomDay-Mod]https://github.com/Xixicor/RandomDay-Mod[/url]
+[*]Olmteka Studio: [url=https://studio.speclang.pro/]https://studio.speclang.pro/[/url]
+[*]Featured Video: [url=https://youtu.be/1HsnSpSSl80]https://youtu.be/1HsnSpSSl80[/url]
+[/list]
+
+[line]
+
+[b]Shout Outs[/b]
+
+Thanks to Deep Field Games and Playstack for Abiotic Factor.
+
+Thanks to the UE4SS developers and community for making Lua-based Unreal Engine modding workflows possible.
+
+Thanks to the Abiotic Factor modding community for dedicated-server experimentation and testing.
+
+Thanks to the authors of compatible server-side mods, including FalseLight / FalseLight27 and combatken.
+
+[line]
+
+[b]Disclaimer[/b]
+
+RandomDay is an independent community mod. It is not affiliated with or endorsed by Deep Field Games, Playstack, UE4SS, Nexus Mods, or any third-party mod author unless explicitly stated.
+
+Abiotic Factor, Deep Field Games, Playstack, UE4SS, Nexus Mods, third-party mods, logos, trademarks, and related assets belong to their respective owners.

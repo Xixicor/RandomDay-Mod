@@ -1,0 +1,25 @@
+name: Profile issue
+description: Report a problem with one of the 17 RandomDay profiles
+title: "[Profile]: Day X - "
+labels: [profile]
+body:
+  - type: input
+    id: day
+    attributes:
+      label: Day number
+      placeholder: "1-17"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs or config evidence
+      render: text

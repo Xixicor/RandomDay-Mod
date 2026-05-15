@@ -1,0 +1,23 @@
+return {
+    version = "0.3.15-alpha-compact-text-hotfix1",
+    system = "seventeen_suns_non_repeating_rotation",
+    families = {
+        { id = "action", public_name = "Action", label = "ACTION", file = "action_17.lua", description = "More shooting, more visible combat, less sneaking.", genre = "combat-forward operations", humor_style = "loud facility optimism" },
+        { id = "survival", public_name = "Survival", label = "SURVIVAL", file = "survival_17.lua", description = "Fewer enemies, stronger threats, higher rewards, and less forgiveness.", genre = "stealth survival against stronger threats", humor_style = "cruelly polite survival notice" },
+        { id = "stealth", public_name = "Stealth", label = "STEALTH", file = "stealth_17.lua", description = "Avoid detection. The facility is listening harder than usual.", genre = "avoidance and surveillance pressure", humor_style = "whispered corporate surveillance" },
+        { id = "horde", public_name = "Horde", label = "HORDE", file = "horde_17.lua", description = "Quantity problem. The facility has ordered too many hostiles.", genre = "crowd pressure and swarm control", humor_style = "overwhelmed logistics office" },
+        { id = "boss_hunt", public_name = "Boss Hunt", label = "BOSS HUNT", file = "boss_hunt_17.lua", description = "Rare severe encounters with trophy-level rewards and trophy-level mistakes.", genre = "elite target hunts", humor_style = "trophy-board challenge notices" },
+        { id = "scavenger", public_name = "Scavenger", label = "SCAVENGER", file = "scavenger_17.lua", description = "Loot routes are profitable, crowded, and morally unsupervised.", genre = "loot routes and greedy risk", humor_style = "supply-chain jokes" },
+        { id = "builder", public_name = "Builder", label = "BUILDER", file = "builder_17.lua", description = "Base expansion and logistics with occasional structural objections.", genre = "base expansion with controlled raids", humor_style = "clipboard construction comedy" },
+        { id = "expedition", public_name = "Expedition", label = "EXPEDITION", file = "expedition_17.lua", description = "Travel-focused run. Routes matter; lingering is discouraged.", genre = "travel and route hazards", humor_style = "travel advisory briefings" },
+        { id = "security_lockdown", public_name = "Security Lockdown", label = "SECURITY LOCKDOWN", file = "security_lockdown_17.lua", description = "Order, robots, patrols, detection, and too much procedure.", genre = "patrols robots and alarms", humor_style = "overbearing corporate security" },
+        { id = "biohazard", public_name = "Biohazard", label = "BIOHAZARD", file = "biohazard_17.lua", description = "Pests, contamination, water problems, and legally vague hygiene.", genre = "pest and contamination survival", humor_style = "sanitation/legal disclaimers" },
+        { id = "anteverse", public_name = "Anteverse", label = "ANTEVERSE", file = "anteverse_17.lua", description = "Portal pressure, variants, and dimensional side effects.", genre = "portal and variant pressure", humor_style = "dimensional HR understatement" },
+        { id = "nightmare", public_name = "Nightmare", label = "NIGHTMARE", file = "nightmare_17.lua", description = "Darkness, dread, rare severe threats, and quiet mistakes.", genre = "dark horror and rare severe threats", humor_style = "deadpan horror administration" },
+        { id = "weathered", public_name = "Weathered", label = "WEATHERED", file = "weathered_17.lua", description = "Environmental survival: weather, radiation, power, hunger, thirst.", genre = "environmental survival", humor_style = "meteorology apology" },
+        { id = "precision", public_name = "Precision", label = "PRECISION", file = "precision_17.lua", description = "Fewer enemies, sharper aim, higher punishment for exposure.", genre = "ranged lethality and detection", humor_style = "audit and accuracy language" },
+        { id = "logistics", public_name = "Logistics", label = "LOGISTICS", file = "logistics_17.lua", description = "Transport, inventory, durability, weight, supply runs, prep economy.", genre = "inventory economy and preparation", humor_style = "inventory bureaucracy" },
+        { id = "experimental", public_name = "Experimental", label = "EXPERIMENTAL", file = "experimental_17.lua", description = "Weird combinations, unstable tables, strange resistances.", genre = "unstable mixed rules", humor_style = "lab notes approved by no one responsible" },
+        { id = "compliance_test", public_name = "Compliance Test", label = "COMPLIANCE TEST", file = "compliance_test_17.lua", description = "A 17-day final exam across the facility's worst ideas.", genre = "rotating final exam", humor_style = "triumphant corporate cruelty" },
+    }
+}
