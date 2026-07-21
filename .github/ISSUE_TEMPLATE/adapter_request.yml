@@ -1,0 +1,37 @@
+name: Adapter request
+description: Request support for another optional server-side mod adapter
+title: "[Adapter] "
+labels: [adapter, enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Adapter requests must respect third-party authorship. Do not paste another mod's source code here.
+  - type: input
+    id: mod_name
+    attributes:
+      label: Mod name
+      description: Name of the mod you want RandomDay to support.
+    validations:
+      required: true
+  - type: input
+    id: author_link
+    attributes:
+      label: Author / original page
+      description: Nexus or official page link.
+    validations:
+      required: true
+  - type: textarea
+    id: exposed_settings
+    attributes:
+      label: Exposed settings
+      description: List the settings or config keys that appear intended for server-owner editing.
+    validations:
+      required: true
+  - type: textarea
+    id: desired_profiles
+    attributes:
+      label: Desired RandomDay behavior
+      description: Explain which RandomDay profiles should change these settings.
+    validations:
+      required: false

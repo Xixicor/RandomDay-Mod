@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Public documentation
+    url: https://github.com/Xixicor/RandomDay-Mod/tree/main/docs
+    about: Read the GitHub documentation.
+  - name: Documentacion en espanol
+    url: https://github.com/Xixicor/RandomDay-Mod/blob/main/docs/profiles/README.md
+    about: Review the profile documentation on GitHub.

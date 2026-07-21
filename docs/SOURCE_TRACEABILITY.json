@@ -1,0 +1,1723 @@
+{
+  "schema_version": 1,
+  "package_member_count": 51,
+  "public_config_keys": [
+    "version",
+    "package_mode",
+    "plan_basis",
+    "logging.level",
+    "experience.mode",
+    "cycle.application_mode",
+    "cycle.cycle_length_days",
+    "cycle.start_day_mode",
+    "cycle.start_day",
+    "cycle.day_progression_mode",
+    "cycle.bootstrap_day",
+    "cycle.check_interval_ms",
+    "profile_family.mode",
+    "profile_family.selected_family",
+    "profile_family.default_family",
+    "profile_family.allowed_families",
+    "profile_family.preserve_family_until_day_17",
+    "profile_family.reroll_only_after_day_17",
+    "profile_family.prevent_repeats_until_rotation_complete",
+    "world_scope.enabled",
+    "world_scope.affect_open_worlds",
+    "world_scope.unknown_world_policy",
+    "world_scope.log_scope_decisions",
+    "world_scope.protected_worlds",
+    "paths.runtime_dir",
+    "paths.web_export_dir",
+    "paths.sandbox_path_override",
+    "paths.sandbox_candidates",
+    "paths.write_sandbox_mirrors",
+    "paths.sandbox_mirror_required",
+    "paths.world_name",
+    "paths.sandbox_mirror_candidates",
+    "sandbox.backup_before_write",
+    "sandbox.restore_last_good_on_failure",
+    "sandbox.force_rewrite_every_supervision_tick",
+    "external_mods.enabled",
+    "external_mods.optional_by_default",
+    "external_mods.patch_only_existing_keys",
+    "external_mods.backup_before_write",
+    "external_mods.adapters",
+    "player_message.enabled",
+    "player_message.log_on_startup",
+    "player_message.register_console_command",
+    "player_message.console_command",
+    "player_message.broadcast_enabled",
+    "player_message.startup_delay_ms",
+    "player_message.join_check_interval_ms",
+    "player_message.send_daily_joke_after_join",
+    "player_message.daily_joke_delay_seconds",
+    "player_message.criticality_join",
+    "player_message.criticality_joke",
+    "player_message.max_line_chars",
+    "player_message.max_join_lines",
+    "player_message.max_warning_lines",
+    "player_message.max_note_lines"
+  ],
+  "package_sources": [
+    {
+      "path": "RandomDay/.randomday_mode",
+      "kind": "marker",
+      "role": "Generated package mode",
+      "entry_point_or_caller": "ax_core/version.lua and ax_core/init.lua",
+      "inputs": "builder artifact mode",
+      "outputs": "dedicated_server or singleplayer_manual",
+      "side_effects": "selects write boundary",
+      "public_settings": [],
+      "operator_visible_states": [
+        "dedicated_server",
+        "singleplayer_manual"
+      ],
+      "failure_modes": [
+        "invalid mode stops startup"
+      ],
+      "canonical_document": "docs/ARCHITECTURE.md#package-modes",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/.randomday_version",
+      "kind": "marker",
+      "role": "Generated release identity",
+      "entry_point_or_caller": "ax_core/version.lua",
+      "inputs": "builder version",
+      "outputs": "runtime version string",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "versioned",
+        "unversioned"
+      ],
+      "failure_modes": [
+        "missing or blank marker",
+        "final marker mismatch"
+      ],
+      "canonical_document": "docs/RELEASE_VALIDATION.md#publication-manifest-boundary",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_backup/manager.lua",
+      "kind": "recovery",
+      "role": "Create operation backups and maintain last-good pair",
+      "entry_point_or_caller": "ax_sandbox/writer.lua",
+      "inputs": "target bytes, profile, hash",
+      "outputs": "backup files and last-good manifest",
+      "side_effects": "writes runtime/backups and runtime/last_good",
+      "public_settings": [
+        "sandbox.backup_before_write",
+        "sandbox.restore_last_good_on_failure"
+      ],
+      "operator_visible_states": [
+        "backup_written",
+        "last_good_updated",
+        "restored"
+      ],
+      "failure_modes": [
+        "backup copy failure",
+        "manifest update failure",
+        "restore failure"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-backup-manager",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_config/server.lua",
+      "kind": "configuration",
+      "role": "Complete public configuration and generated identity reader",
+      "entry_point_or_caller": "ax_core/init.lua",
+      "inputs": "package markers and operator settings",
+      "outputs": "configuration table",
+      "side_effects": "controls bounded runtime behavior",
+      "public_settings": [
+        "version",
+        "package_mode",
+        "plan_basis",
+        "logging.level",
+        "experience.mode",
+        "cycle.application_mode",
+        "cycle.cycle_length_days",
+        "cycle.start_day_mode",
+        "cycle.start_day",
+        "cycle.day_progression_mode",
+        "cycle.bootstrap_day",
+        "cycle.check_interval_ms",
+        "profile_family.mode",
+        "profile_family.selected_family",
+        "profile_family.default_family",
+        "profile_family.allowed_families",
+        "profile_family.preserve_family_until_day_17",
+        "profile_family.reroll_only_after_day_17",
+        "profile_family.prevent_repeats_until_rotation_complete",
+        "world_scope.enabled",
+        "world_scope.affect_open_worlds",
+        "world_scope.unknown_world_policy",
+        "world_scope.log_scope_decisions",
+        "world_scope.protected_worlds",
+        "paths.runtime_dir",
+        "paths.web_export_dir",
+        "paths.sandbox_path_override",
+        "paths.sandbox_candidates",
+        "paths.write_sandbox_mirrors",
+        "paths.sandbox_mirror_required",
+        "paths.world_name",
+        "paths.sandbox_mirror_candidates",
+        "sandbox.backup_before_write",
+        "sandbox.restore_last_good_on_failure",
+        "sandbox.force_rewrite_every_supervision_tick",
+        "external_mods.enabled",
+        "external_mods.optional_by_default",
+        "external_mods.patch_only_existing_keys",
+        "external_mods.backup_before_write",
+        "external_mods.adapters",
+        "player_message.enabled",
+        "player_message.log_on_startup",
+        "player_message.register_console_command",
+        "player_message.console_command",
+        "player_message.broadcast_enabled",
+        "player_message.startup_delay_ms",
+        "player_message.join_check_interval_ms",
+        "player_message.send_daily_joke_after_join",
+        "player_message.daily_joke_delay_seconds",
+        "player_message.criticality_join",
+        "player_message.criticality_joke",
+        "player_message.max_line_chars",
+        "player_message.max_join_lines",
+        "player_message.max_warning_lines",
+        "player_message.max_note_lines"
+      ],
+      "operator_visible_states": [
+        "configured"
+      ],
+      "failure_modes": [
+        "invalid Lua",
+        "invalid safety lock or path component"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-config-server",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_core/init.lua",
+      "kind": "orchestrator",
+      "role": "Own startup, one boot selection, writes, adapters, status, export, and messages",
+      "entry_point_or_caller": "Scripts/main.lua",
+      "inputs": "configuration, active sandbox marker, profiles",
+      "outputs": "prepared result and operator outputs",
+      "side_effects": "anchors runtime paths and may register LoopAsync",
+      "public_settings": [
+        "cycle.check_interval_ms"
+      ],
+      "operator_visible_states": [
+        "prepared",
+        "degraded_state_persistence",
+        "write_failed"
+      ],
+      "failure_modes": [
+        "invalid safety lock",
+        "runtime directory unavailable",
+        "stage exception"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-core-init",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_core/log.lua",
+      "kind": "service",
+      "role": "Level-filtered RandomDay logging",
+      "entry_point_or_caller": "all runtime modules",
+      "inputs": "logging.level and messages",
+      "outputs": "[RandomDay] UE4SS log lines",
+      "side_effects": "appends through UE4SS print",
+      "public_settings": [
+        "logging.level"
+      ],
+      "operator_visible_states": [
+        "debug",
+        "info",
+        "warn",
+        "error"
+      ],
+      "failure_modes": [
+        "unsupported level falls back to info filtering"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-core-log",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_core/utils.lua",
+      "kind": "service",
+      "role": "File, path, encoding, hash, directory, and transaction primitives",
+      "entry_point_or_caller": "runtime modules",
+      "inputs": "paths, bytes, validators",
+      "outputs": "transaction result objects and bounded runtime-relative directory failures",
+      "side_effects": "creates directories and transactional sidecars",
+      "public_settings": [],
+      "operator_visible_states": [
+        "created",
+        "replaced",
+        "restored",
+        "restore_failed"
+      ],
+      "failure_modes": [
+        "unsafe path or directory command unavailable/raised/failed",
+        "write/readback/validation/promotion/cleanup failure"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-core-utils",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_core/version.lua",
+      "kind": "service",
+      "role": "Read generated version and mode markers",
+      "entry_point_or_caller": "config and profile registry",
+      "inputs": "marker files",
+      "outputs": "identity strings",
+      "side_effects": "reads package files only",
+      "public_settings": [
+        "version",
+        "package_mode"
+      ],
+      "operator_visible_states": [
+        "versioned",
+        "unversioned",
+        "invalid"
+      ],
+      "failure_modes": [
+        "missing or blank marker"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-core-version",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_cycle/calendar.lua",
+      "kind": "state_machine",
+      "role": "Read active marker, select one prepared profile, persist rotation state",
+      "entry_point_or_caller": "ax_core/init.lua",
+      "inputs": "sandbox text, config, profiles, state files",
+      "outputs": "active/prepared selection and rotation state",
+      "side_effects": "transactionally replaces rotation state",
+      "public_settings": [
+        "experience.mode",
+        "cycle.application_mode",
+        "cycle.cycle_length_days",
+        "cycle.start_day_mode",
+        "cycle.start_day",
+        "cycle.day_progression_mode",
+        "cycle.bootstrap_day",
+        "profile_family.mode",
+        "profile_family.selected_family",
+        "profile_family.default_family",
+        "profile_family.allowed_families"
+      ],
+      "operator_visible_states": [
+        "bootstrap_prepare_first_family_start_day",
+        "active_marker_found_family_locked_prepare_next_day",
+        "active_marker_found_completed_run_prepare_next_unused_family",
+        "state_recovery_rewrite_prepared_profile_no_reroll",
+        "supervision_reconfirm_prepared_profile_no_advance"
+      ],
+      "failure_modes": [
+        "state unreadable",
+        "state transaction failure",
+        "profile unavailable"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-cycle-calendar",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_external/adapters/ante_up.lua",
+      "kind": "adapter_definition",
+      "role": "ANTE Up signatures and prepared values",
+      "entry_point_or_caller": "ax_external/bridge.lua",
+      "inputs": "active profile adapter ID",
+      "outputs": "recognized value map",
+      "side_effects": "none directly",
+      "public_settings": [],
+      "operator_visible_states": [
+        "recognized",
+        "incompatible"
+      ],
+      "failure_modes": [
+        "no complete signature"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-external-adapters-ante-up",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_external/adapters/dynamic_spawns.lua",
+      "kind": "adapter_definition",
+      "role": "DynamicSpawns signatures and prepared values",
+      "entry_point_or_caller": "ax_external/bridge.lua",
+      "inputs": "active profile adapter ID",
+      "outputs": "recognized value map",
+      "side_effects": "none directly",
+      "public_settings": [],
+      "operator_visible_states": [
+        "recognized",
+        "incompatible"
+      ],
+      "failure_modes": [
+        "no complete signature"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-external-adapters-dynamic-spawns",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_external/adapters/encounter_director.lua",
+      "kind": "adapter_definition",
+      "role": "Encounter and world-scope signatures and values",
+      "entry_point_or_caller": "ax_external/bridge.lua",
+      "inputs": "active profile encounter values and scope config",
+      "outputs": "recognized value map",
+      "side_effects": "none directly",
+      "public_settings": [],
+      "operator_visible_states": [
+        "recognized",
+        "incompatible"
+      ],
+      "failure_modes": [
+        "no complete signature"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-external-adapters-encounter-director",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_external/adapters/lethal_lasers.lua",
+      "kind": "adapter_definition",
+      "role": "Lethal Lasers signatures and prepared values",
+      "entry_point_or_caller": "ax_external/bridge.lua",
+      "inputs": "active profile adapter ID",
+      "outputs": "recognized value map",
+      "side_effects": "none directly",
+      "public_settings": [],
+      "operator_visible_states": [
+        "recognized",
+        "incompatible"
+      ],
+      "failure_modes": [
+        "no complete signature"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-external-adapters-lethal-lasers",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_external/bridge.lua",
+      "kind": "adapter_runtime",
+      "role": "Recognize, back up, patch, verify, and roll back optional adapter targets",
+      "entry_point_or_caller": "ax_core/init.lua",
+      "inputs": "config, active profile, adapter definitions, target files",
+      "outputs": "adapter result list and optional target changes",
+      "side_effects": "writes third-party config only after complete signature match",
+      "public_settings": [
+        "external_mods.enabled",
+        "external_mods.optional_by_default",
+        "external_mods.patch_only_existing_keys",
+        "external_mods.backup_before_write",
+        "external_mods.adapters",
+        "world_scope.enabled",
+        "world_scope.affect_open_worlds",
+        "world_scope.unknown_world_policy",
+        "world_scope.log_scope_decisions",
+        "world_scope.protected_worlds"
+      ],
+      "operator_visible_states": [
+        "applied",
+        "already_current",
+        "not_installed",
+        "skipped_incompatible",
+        "failed_rolled_back",
+        "rollback_failed"
+      ],
+      "failure_modes": [
+        "read/signature/backup/write/readback/restore failure"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-external-bridge",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_player/message.lua",
+      "kind": "message_runtime",
+      "role": "Send bounded join/daily status and optional console output",
+      "entry_point_or_caller": "ax_core/init.lua",
+      "inputs": "active/prepared translation and player config",
+      "outputs": "client warning messages and log results",
+      "side_effects": "may register LoopAsync and console handler",
+      "public_settings": [
+        "player_message.enabled",
+        "player_message.log_on_startup",
+        "player_message.register_console_command",
+        "player_message.console_command",
+        "player_message.broadcast_enabled",
+        "player_message.startup_delay_ms",
+        "player_message.join_check_interval_ms",
+        "player_message.send_daily_joke_after_join",
+        "player_message.daily_joke_delay_seconds",
+        "player_message.criticality_join",
+        "player_message.criticality_joke",
+        "player_message.max_line_chars",
+        "player_message.max_join_lines",
+        "player_message.max_warning_lines",
+        "player_message.max_note_lines"
+      ],
+      "operator_visible_states": [
+        "message_sent",
+        "no_players",
+        "transport_unavailable"
+      ],
+      "failure_modes": [
+        "player unavailable",
+        "message transport unavailable"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-player-message",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/action_17.lua",
+      "kind": "profile_data",
+      "role": "Historical Action compatibility family pack",
+      "entry_point_or_caller": "packaged compatibility consumers",
+      "inputs": "base profile and overrides",
+      "outputs": "17-profile action pack",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "loaded"
+      ],
+      "failure_modes": [
+        "load or schema failure"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-action-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/base_17.lua",
+      "kind": "profile_data",
+      "role": "Canonical base values and day templates",
+      "entry_point_or_caller": "profile_builder.lua",
+      "inputs": "static profile data and identity",
+      "outputs": "base profile table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "loaded"
+      ],
+      "failure_modes": [
+        "missing required profile data"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-base-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/dictionary.lua",
+      "kind": "dictionary",
+      "role": "Define all sandbox setting meanings, types, ranges, domains, and language",
+      "entry_point_or_caller": "translation.lua and status.lua",
+      "inputs": "schema-aligned static definitions",
+      "outputs": "dictionary table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "translated",
+        "unknown_explicit"
+      ],
+      "failure_modes": [
+        "missing dictionary key fails coverage test"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-dictionary",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/encounter_profiles.lua",
+      "kind": "profile_data",
+      "role": "Legacy day-index encounter lookup",
+      "entry_point_or_caller": "profile compatibility consumers",
+      "inputs": "day or profile",
+      "outputs": "encounter map",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "found",
+        "missing"
+      ],
+      "failure_modes": [
+        "unknown day returns no entry"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-encounter-profiles",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/action_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete action family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-action-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/anteverse_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete anteverse family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-anteverse-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/biohazard_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete biohazard family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-biohazard-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/boss_hunt_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete boss_hunt family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-boss-hunt-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/builder_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete builder family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-builder-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/compliance_test_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete compliance_test family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-compliance-test-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/expedition_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete expedition family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-expedition-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/experimental_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete experimental family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-experimental-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/horde_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete horde family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-horde-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/logistics_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete logistics family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-logistics-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/nightmare_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete nightmare family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-nightmare-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/precision_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete precision family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-precision-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/scavenger_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete scavenger family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-scavenger-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/security_lockdown_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete security_lockdown family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-security-lockdown-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/stealth_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete stealth family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-stealth-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/survival_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete survival family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-survival-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/families/weathered_17.lua",
+      "kind": "profile_data",
+      "role": "Defines 17 complete weathered family profiles",
+      "entry_point_or_caller": "ax_profiles/randomday_17.lua via profile_family_registry.lua",
+      "inputs": "base profile values, family overrides, schema",
+      "outputs": "one 17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "family_loaded",
+        "profile_selected"
+      ],
+      "failure_modes": [
+        "load failure",
+        "schema or invariant rejection"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-families-weathered-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/message_bank.lua",
+      "kind": "compatibility_wrapper",
+      "role": "Forward legacy message-bank loads to messages_17.lua",
+      "entry_point_or_caller": "packaged compatibility consumers",
+      "inputs": "module root",
+      "outputs": "canonical message module result",
+      "side_effects": "loads one module",
+      "public_settings": [],
+      "operator_visible_states": [
+        "loaded"
+      ],
+      "failure_modes": [
+        "canonical message load failure"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-message-bank",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/messages_17.lua",
+      "kind": "message_data",
+      "role": "Build profile-specific bounded note and joke packs",
+      "entry_point_or_caller": "ax_player/message.lua and message_bank.lua",
+      "inputs": "profile values",
+      "outputs": "message pack",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "message_available",
+        "fallback"
+      ],
+      "failure_modes": [
+        "missing profile uses bounded fallback"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-messages-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/profile_builder.lua",
+      "kind": "profile_builder",
+      "role": "Clone base days, apply bounded overrides, and restore fixed rules",
+      "entry_point_or_caller": "family modules and compatibility packs",
+      "inputs": "family ID, title, overrides",
+      "outputs": "17-profile family table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "built"
+      ],
+      "failure_modes": [
+        "invalid override data"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-profile-builder",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/profile_family_registry.lua",
+      "kind": "registry",
+      "role": "Ordered metadata and source filenames for 17 families",
+      "entry_point_or_caller": "randomday_17.lua",
+      "inputs": "static registry and version marker",
+      "outputs": "family registry table",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "registered"
+      ],
+      "failure_modes": [
+        "missing marker or family source"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-profile-family-registry",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/randomday_17.lua",
+      "kind": "registry_loader",
+      "role": "Load all registered families and expose 289 profiles",
+      "entry_point_or_caller": "calendar, writer, status, tests, generators",
+      "inputs": "family registry and source modules",
+      "outputs": "complete profile set",
+      "side_effects": "loads packaged family modules",
+      "public_settings": [],
+      "operator_visible_states": [
+        "profile_set_loaded"
+      ],
+      "failure_modes": [
+        "missing or invalid family module"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-randomday-17",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/reaction_17.lua",
+      "kind": "profile_data",
+      "role": "Historical Reaction compatibility family pack",
+      "entry_point_or_caller": "packaged compatibility consumers",
+      "inputs": "base profile and overrides",
+      "outputs": "17-profile reaction pack",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "loaded"
+      ],
+      "failure_modes": [
+        "load or schema failure"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-reaction-17",
+      "user_editable": true,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_profiles/translation.lua",
+      "kind": "translator",
+      "role": "Translate raw profiles into bounded scores, facts, summaries, and messages",
+      "entry_point_or_caller": "status.lua and message.lua",
+      "inputs": "profile and dictionary",
+      "outputs": "structured translation and bounded text",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "translated",
+        "unknown_explicit",
+        "bounded"
+      ],
+      "failure_modes": [
+        "missing value remains explicit",
+        "validation failure"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-profiles-translation",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_runtime/status.lua",
+      "kind": "output_writer",
+      "role": "Build sanitized structured runtime status, dictionary, and preview",
+      "entry_point_or_caller": "ax_core/init.lua",
+      "inputs": "selection, write result, adapter result, config",
+      "outputs": "runtime/current JSON and text",
+      "side_effects": "transactionally replaces three current outputs",
+      "public_settings": [],
+      "operator_visible_states": [
+        "prepared_ready",
+        "state_persistence_failed",
+        "write_failed"
+      ],
+      "failure_modes": [
+        "status directory or transaction failure"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-runtime-status",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_sandbox/schema.lua",
+      "kind": "schema",
+      "role": "Canonical sandbox key order, types, ranges, and fixed values",
+      "entry_point_or_caller": "profile builder, serializer, validator",
+      "inputs": "static definitions",
+      "outputs": "schema tables",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "schema_loaded"
+      ],
+      "failure_modes": [
+        "missing or invalid schema data"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-sandbox-schema",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_sandbox/serializer.lua",
+      "kind": "serializer",
+      "role": "Render a complete deterministic SandboxSettings.ini",
+      "entry_point_or_caller": "ax_sandbox/writer.lua",
+      "inputs": "profile, schema, literal helpers",
+      "outputs": "INI bytes with marker",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "rendered"
+      ],
+      "failure_modes": [
+        "missing profile value",
+        "unsupported literal"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-sandbox-serializer",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_sandbox/validator.lua",
+      "kind": "validator",
+      "role": "Validate profile values and rendered INI",
+      "entry_point_or_caller": "writer and tests",
+      "inputs": "profile or INI text plus schema",
+      "outputs": "validation result",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "valid",
+        "invalid"
+      ],
+      "failure_modes": [
+        "missing key",
+        "type/range/fixed-rule/marker mismatch"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-sandbox-validator",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_sandbox/writer.lua",
+      "kind": "writer",
+      "role": "Resolve mode-bounded targets and write verified profile bytes",
+      "entry_point_or_caller": "ax_core/init.lua",
+      "inputs": "config, profile set, selected profile",
+      "outputs": "primary, mirror, or manual sandbox and transaction result",
+      "side_effects": "writes sandbox targets, backups, and sidecars",
+      "public_settings": [
+        "paths.sandbox_path_override",
+        "paths.sandbox_candidates",
+        "paths.write_sandbox_mirrors",
+        "paths.world_name",
+        "paths.sandbox_mirror_candidates",
+        "sandbox.force_rewrite_every_supervision_tick"
+      ],
+      "operator_visible_states": [
+        "applied",
+        "already_current",
+        "target_refused",
+        "failed",
+        "restored",
+        "rollback_failed"
+      ],
+      "failure_modes": [
+        "target directory",
+        "backup",
+        "pending",
+        "promotion",
+        "production validation",
+        "restore failure"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-sandbox-writer",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/ax_web/export.lua",
+      "kind": "output_writer",
+      "role": "Build compact JSON and HTML active/prepared views",
+      "entry_point_or_caller": "ax_core/init.lua",
+      "inputs": "selection, write, adapter, translation status",
+      "outputs": "web_export/today.json and today.html",
+      "side_effects": "transactionally replaces web outputs",
+      "public_settings": [],
+      "operator_visible_states": [
+        "prepared_for_next_reboot",
+        "next_reboot_already_prepared",
+        "degraded_state_persistence",
+        "write_failed_or_rollback"
+      ],
+      "failure_modes": [
+        "export directory or transaction failure"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-ax-web-export",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/Scripts/main.lua",
+      "kind": "entrypoint",
+      "role": "Resolve one mod root and start RandomDay",
+      "entry_point_or_caller": "UE4SS",
+      "inputs": "script source path and known relative roots",
+      "outputs": "ax_core/init.lua invocation",
+      "side_effects": "sets process-local mod root globals",
+      "public_settings": [],
+      "operator_visible_states": [
+        "started",
+        "fatal"
+      ],
+      "failure_modes": [
+        "mod root unresolved",
+        "startup exception"
+      ],
+      "canonical_document": "docs/SOURCE_REFERENCE.md#module-main",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    },
+    {
+      "path": "RandomDay/enabled.txt",
+      "kind": "marker",
+      "role": "UE4SS package enablement marker",
+      "entry_point_or_caller": "UE4SS",
+      "inputs": "package bytes",
+      "outputs": "enabled mod marker",
+      "side_effects": "none",
+      "public_settings": [],
+      "operator_visible_states": [
+        "enabled"
+      ],
+      "failure_modes": [
+        "missing marker"
+      ],
+      "canonical_document": "INSTALL.md",
+      "user_editable": false,
+      "packaged_or_generated": "packaged"
+    }
+  ],
+  "generated_outputs": [
+    {
+      "path": "<configured-primary>/SandboxSettings.ini",
+      "kind": "operator_file",
+      "role": "Complete sandbox file prepared for a future dedicated-server start",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_sandbox/writer.lua",
+      "inputs": "prepared profile and configured primary path",
+      "outputs": "complete INI with RandomDay marker",
+      "side_effects": "replaces configured target transactionally",
+      "public_settings": [
+        "paths.sandbox_path_override",
+        "paths.sandbox_candidates"
+      ],
+      "operator_visible_states": [
+        "applied",
+        "already_current",
+        "restored",
+        "rollback_failed"
+      ],
+      "failure_modes": [
+        "target, backup, write, readback, validation, or restore failure"
+      ],
+      "canonical_document": "docs/ARCHITECTURE.md#sandbox-transaction",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "<configured-mirror>/SandboxSettings.ini",
+      "kind": "operator_file",
+      "role": "Optional mirror of the prepared sandbox",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_sandbox/writer.lua",
+      "inputs": "prepared profile and explicit mirror configuration",
+      "outputs": "complete mirrored INI",
+      "side_effects": "best-effort transactional replacement",
+      "public_settings": [
+        "paths.write_sandbox_mirrors",
+        "paths.world_name",
+        "paths.sandbox_mirror_candidates"
+      ],
+      "operator_visible_states": [
+        "applied",
+        "already_current",
+        "failed"
+      ],
+      "failure_modes": [
+        "target, backup, or transaction failure"
+      ],
+      "canonical_document": "docs/CONFIGURATION.md#optional-mirrors",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/rotation_state.txt",
+      "kind": "operator_file",
+      "role": "Current queue bookkeeping",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_cycle/calendar.lua",
+      "inputs": "accepted selection",
+      "outputs": "schema 1 key-value state",
+      "side_effects": "transactional replacement",
+      "public_settings": [],
+      "operator_visible_states": [
+        "committed",
+        "degraded_state_persistence"
+      ],
+      "failure_modes": [
+        "write/readback/validation/promotion failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#rotation-state-fields",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/rotation_state.last_good.txt",
+      "kind": "recovery_file",
+      "role": "Previous readable queue state",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_cycle/calendar.lua",
+      "inputs": "prior state bytes",
+      "outputs": "schema 1 key-value state",
+      "side_effects": "overwritten as state backup",
+      "public_settings": [],
+      "operator_visible_states": [
+        "available",
+        "missing"
+      ],
+      "failure_modes": [
+        "backup update failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#rotation-state-fields",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/current/randomday_status.json",
+      "kind": "operator_file",
+      "role": "Canonical current structured status",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_runtime/status.lua",
+      "inputs": "selection, write, adapter, translation, and config state",
+      "outputs": "Canonical current structured status",
+      "side_effects": "transactional replacement",
+      "public_settings": [],
+      "operator_visible_states": [
+        "current",
+        "incomplete"
+      ],
+      "failure_modes": [
+        "directory or transaction failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#current-status-schema",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/current/randomday_dictionary.json",
+      "kind": "operator_file",
+      "role": "Public translation dictionary",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_runtime/status.lua",
+      "inputs": "selection, write, adapter, translation, and config state",
+      "outputs": "Public translation dictionary",
+      "side_effects": "transactional replacement",
+      "public_settings": [],
+      "operator_visible_states": [
+        "current",
+        "incomplete"
+      ],
+      "failure_modes": [
+        "directory or transaction failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#current-status-schema",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/current/player_message_preview.txt",
+      "kind": "operator_file",
+      "role": "Bounded message preview",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_runtime/status.lua",
+      "inputs": "selection, write, adapter, translation, and config state",
+      "outputs": "Bounded message preview",
+      "side_effects": "transactional replacement",
+      "public_settings": [],
+      "operator_visible_states": [
+        "current",
+        "incomplete"
+      ],
+      "failure_modes": [
+        "directory or transaction failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#current-status-schema",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/last_good/SandboxSettings.ini",
+      "kind": "recovery_file",
+      "role": "Verified last-good sandbox",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_backup/manager.lua",
+      "inputs": "verified primary result and profile identity",
+      "outputs": "Verified last-good sandbox",
+      "side_effects": "transactional pair update",
+      "public_settings": [],
+      "operator_visible_states": [
+        "updated",
+        "previous_pair_preserved"
+      ],
+      "failure_modes": [
+        "read/write/manifest/restore failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#operator-file-map",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/last_good/manifest.lua",
+      "kind": "recovery_file",
+      "role": "Identity and hash for last-good sandbox",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_backup/manager.lua",
+      "inputs": "verified primary result and profile identity",
+      "outputs": "Identity and hash for last-good sandbox",
+      "side_effects": "transactional pair update",
+      "public_settings": [],
+      "operator_visible_states": [
+        "updated",
+        "previous_pair_preserved"
+      ],
+      "failure_modes": [
+        "read/write/manifest/restore failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#operator-file-map",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/backups/<operation>/SandboxSettings.ini",
+      "kind": "recovery_file",
+      "role": "Verified primary pre-write backup",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_backup/manager.lua",
+      "inputs": "existing target bytes",
+      "outputs": "Verified primary pre-write backup",
+      "side_effects": "new unique directory; no automatic pruning",
+      "public_settings": [],
+      "operator_visible_states": [
+        "backup_written",
+        "backup_failed"
+      ],
+      "failure_modes": [
+        "directory or verified copy failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#operator-file-map",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/backups/mirror_<operation>/SandboxSettings.ini",
+      "kind": "recovery_file",
+      "role": "Verified mirror pre-write backup",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_sandbox/writer.lua",
+      "inputs": "existing target bytes",
+      "outputs": "Verified mirror pre-write backup",
+      "side_effects": "new unique directory; no automatic pruning",
+      "public_settings": [],
+      "operator_visible_states": [
+        "backup_written",
+        "backup_failed"
+      ],
+      "failure_modes": [
+        "directory or verified copy failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#operator-file-map",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/backups/external_<operation>/...",
+      "kind": "recovery_file",
+      "role": "Verified adapter pre-write backup",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_external/bridge.lua",
+      "inputs": "existing target bytes",
+      "outputs": "Verified adapter pre-write backup",
+      "side_effects": "new unique directory; no automatic pruning",
+      "public_settings": [],
+      "operator_visible_states": [
+        "backup_written",
+        "backup_failed"
+      ],
+      "failure_modes": [
+        "directory or verified copy failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#operator-file-map",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/pending/",
+      "kind": "reserved_directory",
+      "role": "Reserved runtime directory; current transactions use sibling sidecars",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_core/utils.lua",
+      "inputs": "runtime initialization",
+      "outputs": "empty directory in normal current behavior",
+      "side_effects": "directory creation only",
+      "public_settings": [],
+      "operator_visible_states": [
+        "empty",
+        "unavailable"
+      ],
+      "failure_modes": [
+        "directory creation failure stops startup"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#operator-file-map",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "runtime/singleplayer_manual/SandboxSettings.ini",
+      "kind": "operator_file",
+      "role": "Manual-copy singleplayer or LAN sandbox",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_sandbox/writer.lua",
+      "inputs": "prepared profile in singleplayer_manual mode",
+      "outputs": "complete INI for manual copy",
+      "side_effects": "transactional replacement inside mod root only",
+      "public_settings": [
+        "package_mode"
+      ],
+      "operator_visible_states": [
+        "applied",
+        "already_current",
+        "manual_copy_required"
+      ],
+      "failure_modes": [
+        "target, write, readback, validation, or restore failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#operator-file-map",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "web_export/today.json",
+      "kind": "operator_file",
+      "role": "Compact machine-readable active/prepared view",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_web/export.lua",
+      "inputs": "selection, transaction, adapter, and translation state",
+      "outputs": "Compact machine-readable active/prepared view",
+      "side_effects": "transactional replacement",
+      "public_settings": [],
+      "operator_visible_states": [
+        "prepared_for_next_reboot",
+        "degraded_state_persistence",
+        "write_failed_or_rollback"
+      ],
+      "failure_modes": [
+        "directory or transaction failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#web-export-schema",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "web_export/today.html",
+      "kind": "operator_file",
+      "role": "Human-readable active/prepared view",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_web/export.lua",
+      "inputs": "selection, transaction, adapter, and translation state",
+      "outputs": "Human-readable active/prepared view",
+      "side_effects": "transactional replacement",
+      "public_settings": [],
+      "operator_visible_states": [
+        "prepared_for_next_reboot",
+        "degraded_state_persistence",
+        "write_failed_or_rollback"
+      ],
+      "failure_modes": [
+        "directory or transaction failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#web-export-schema",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "<target>.randomday.pending",
+      "kind": "transaction_sidecar",
+      "role": "Candidate transaction bytes before promotion",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_core/utils.lua and RandomDay/Scripts/ax_external/bridge.lua",
+      "inputs": "target bytes and transaction stage",
+      "outputs": "Candidate transaction bytes before promotion",
+      "side_effects": "created beside target and normally removed or promoted",
+      "public_settings": [],
+      "operator_visible_states": [
+        "pending",
+        "original_held",
+        "restored",
+        "retained_for_review"
+      ],
+      "failure_modes": [
+        "stale cleanup, promotion, restore, or cleanup failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#transaction-sidecars",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "<target>.randomday.rollback",
+      "kind": "transaction_sidecar",
+      "role": "Original transaction bytes held for recovery",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_core/utils.lua and RandomDay/Scripts/ax_external/bridge.lua",
+      "inputs": "target bytes and transaction stage",
+      "outputs": "Original transaction bytes held for recovery",
+      "side_effects": "created beside target and normally removed or promoted",
+      "public_settings": [],
+      "operator_visible_states": [
+        "pending",
+        "original_held",
+        "restored",
+        "retained_for_review"
+      ],
+      "failure_modes": [
+        "stale cleanup, promotion, restore, or cleanup failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#transaction-sidecars",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "<target>.randomday.restore.pending",
+      "kind": "transaction_sidecar",
+      "role": "Candidate adapter-restore bytes",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_core/utils.lua and RandomDay/Scripts/ax_external/bridge.lua",
+      "inputs": "target bytes and transaction stage",
+      "outputs": "Candidate adapter-restore bytes",
+      "side_effects": "created beside target and normally removed or promoted",
+      "public_settings": [],
+      "operator_visible_states": [
+        "pending",
+        "original_held",
+        "restored",
+        "retained_for_review"
+      ],
+      "failure_modes": [
+        "stale cleanup, promotion, restore, or cleanup failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#transaction-sidecars",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "<target>.randomday.restore.rollback",
+      "kind": "transaction_sidecar",
+      "role": "Adapter-restore recovery bytes",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_core/utils.lua and RandomDay/Scripts/ax_external/bridge.lua",
+      "inputs": "target bytes and transaction stage",
+      "outputs": "Adapter-restore recovery bytes",
+      "side_effects": "created beside target and normally removed or promoted",
+      "public_settings": [],
+      "operator_visible_states": [
+        "pending",
+        "original_held",
+        "restored",
+        "retained_for_review"
+      ],
+      "failure_modes": [
+        "stale cleanup, promotion, restore, or cleanup failure"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#transaction-sidecars",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "<recognized-adapter-target>",
+      "kind": "modified_operator_file",
+      "role": "Separately installed mod configuration changed only after complete signature match",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_external/bridge.lua",
+      "inputs": "active profile mapping and recognized target bytes",
+      "outputs": "verified existing-key updates",
+      "side_effects": "transactional target mutation with backup and rollback",
+      "public_settings": [
+        "external_mods.adapters",
+        "world_scope.enabled",
+        "world_scope.affect_open_worlds",
+        "world_scope.unknown_world_policy",
+        "world_scope.log_scope_decisions",
+        "world_scope.protected_worlds"
+      ],
+      "operator_visible_states": [
+        "applied",
+        "already_current",
+        "not_installed",
+        "skipped_incompatible",
+        "failed_rolled_back",
+        "rollback_failed"
+      ],
+      "failure_modes": [
+        "signature, backup, write, readback, or rollback failure"
+      ],
+      "canonical_document": "docs/SUPPORTED_ADAPTERS.md",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    },
+    {
+      "path": "UE4SS.log",
+      "kind": "external_log",
+      "role": "UE4SS-managed log carrying RandomDay-prefixed diagnostics",
+      "entry_point_or_caller": "RandomDay/Scripts/ax_core/log.lua",
+      "inputs": "runtime messages and logging.level",
+      "outputs": "[RandomDay] log lines",
+      "side_effects": "append/rotation controlled by UE4SS",
+      "public_settings": [
+        "logging.level"
+      ],
+      "operator_visible_states": [
+        "debug",
+        "info",
+        "warn",
+        "error"
+      ],
+      "failure_modes": [
+        "log transport unavailable"
+      ],
+      "canonical_document": "docs/RUNTIME_FILES.md#operator-file-map",
+      "user_editable": false,
+      "packaged_or_generated": "generated"
+    }
+  ]
+}
