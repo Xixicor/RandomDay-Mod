@@ -39,6 +39,6 @@ what you want to do.
 
 ## Languages
 
-[Choose one of 27 localized entry pages](locales/README.md). Exact setting
+[Choose one of 27 localized entry pages](locales/LANGUAGES.md). Exact setting
 names, paths, profile identifiers, and error codes remain unchanged so they can
 be matched to the program and technical reference.

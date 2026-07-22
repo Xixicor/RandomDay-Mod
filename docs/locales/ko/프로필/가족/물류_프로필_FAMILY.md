@@ -1,0 +1,1632 @@
+<a id="randomday---logistics-family"></a>
+# RandomDay - 물류 가족
+
+> **표준 영어 소스:** [logistics.md](../../../../profiles/families/logistics.md). 이 현지화된 문서는 정확한 명령, 경로, 키, 상태 값, 해시 및 파일 이름을 보존합니다. 기술적인 표현이 다를 경우 영어 소스를 사용하세요.
+
+
+버전: `v0.3.16-alpha`
+
+운송, 재고, 내구성, 무게, 공급 실행, 준비 경제.
+
+**플레이 스타일:** 재고 경제 및 준비 **메시지 톤:** 재고 관료주의
+
+<a id="17-day-index"></a>
+## 17일 지수
+
+| 일 | 프로필 | 조건 | 주요 압력 |
+|---:|---|---|---|
+| 1 | 재고 오리엔테이션 | 표준 압력 (1.72/5) | 환경적 압박 |
+| 2 | 개방형 보관 | 바람직한 조건 (1.22/5) | 환경적 압박 |
+| 3 | 수분 공급 서류 작업 | 표준 압력 (2.0/5) | 생존 압박 |
+| 4 | 공급망 축하 | 바람직한 조건 (1.4/5) | 환경적 압박 |
+| 5 | 영수증 보안 | 표준 압력 (1.89/5) | 환경적 압박 |
+| 6 | 풍화 화물 | 표준 압력 (1.87/5) | 환경적 압박 |
+| 7 | 야간 재고 조사 | 표준 압력 (1.9/5) | 환경적 압박 |
+| 8 | 경로 최적화 메모 | 바람직한 조건 (1.68/5) | 환경적 압박 |
+| 9 | 배급 대장 | 표준 압력 (1.99/5) | 생존 압박 |
+| 10 | 복구 재포장 | 바람직한 조건 (0.99/5) | 환경적 압박 |
+| 11 | 안전 라벨 교육 | 바람직한 조건 (1.4/5) | 환경적 압박 |
+| 12 | Black Lab 물류 검토 | 표준 압력 (2.32/5) | 전투 압박 |
+| 13 | 장기간 운송 작업 | 표준 압력 (2.05/5) | 생존 압박 |
+| 14 | 공급 창고 기적 감사 | 바람직한 조건 (0.97/5) | 환경적 압박 |
+| 15 | 계수 정확도 | 표준 압력 (1.84/5) | 환경적 압박 |
+| 16 | 실험적 재고 | 표준 압력 (2.03/5) | 환경적 압박 |
+| 17 | 최종 물류 시험 | 표준 압력 (2.55/5) | 전투 압박 |
+
+<a id="day-1---inventory-orientation"></a>
+## 1일차 - 재고 방향
+
+**프로필 ID:** `logistics_inventory_orientation` **전체 조건:** 표준 압력 (1.72/5) **일반적인 의미:** 표준 압력. 환경 압력: 표준 압력이 주요 압력입니다. 생존 압력: 표준 압력이 그 다음으로 강력한 요소입니다. **플레이어 조언:** 기지를 떠나기 전에 전원, 물, 피난처 및 위험 보호 장치를 확인하세요.
+
+<a id="main-effects"></a>
+### 주요 효과
+
+- 스택 용량이 최고입니다 (8x).
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0.25x).
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0.25x).
+- 밤에는 전원 소켓이 꺼집니다.
+- 수집 후 전리품이 돌아올 수 있습니다.
+
+<a id="domain-ratings"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 좋음 (1.65/5) | 적대적인 압력이 정상입니다. |
+| 생존 압박 | 표준 (1.9/5) | 일상 생존 요구 사항이 정상에 가깝습니다. |
+| 자원 압박 | 좋음 (1.44/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 표준 (2.22/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.5/5) | 죽음과 회복 규칙은 관대합니다. |
+
+<a id="encounter-context"></a>
+### 대우 상황
+
+- 계층: **보통의 만남**
+- 테마: **물류 방향**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0.07**
+- 특별 이벤트 기회: **2**
+
+<a id="exact-sandbox-settings"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 1.0 | 억제율은 1x로 정상에 가깝습니다. |
+| DamageToAlliesMultiplier | 0.25 | 아군 사격 피해는 0.25x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.0 | 낮-밤 주기 속도는 1x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 0.8 | 적 탐지 속도는 0.8x로 정상보다 낮습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.25 | 사망 시 내구도 손실은 평소보다 훨씬 낮습니다. 0.25x. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 1.0 | 방어에 대한 적의 피해는 1x로 거의 정상입니다. |
+| EnemyHealthMultiplier | 0.9 | 적 회복력은 0.9x로 정상에 가깝습니다. |
+| EnemyPlayerDamageMultiplier | 1.0 | 플레이어에게 주는 적 피해는 1x로 보통에 가깝습니다. |
+| EnemySpawnRate | 0.7 | 적의 빈도가 0.7x로 정상보다 낮습니다. |
+| FatigueSpeedMultiplier | 1.0 | 피로율은 1x로 보통에 가깝습니다. |
+| FirstTimeStartingWeapon | 0 | 시작 무기 보급이 표준입니다. 압력은 0입니다. |
+| FoodSpoilSpeedMultiplier | 1.0 | 음식 부패는 1x로 거의 정상입니다. |
+| GameDifficulty | 1 | 게임 난이도는 표준입니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 1.0 | 배고픔 비율은 1배로 정상에 가깝습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 1.5 | 아이템 내구도는 1.5배로 정상보다 높습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.5 | 아이템 무게는 0.5x로 보통보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 1.4 | 경험치 획득량은 1.4x로 정상보다 높습니다. |
+| PowerSocketsOffAtNight | true | 밤에는 전원 소켓이 꺼집니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 1.0 | 냉장은 1x로 정상에 가깝습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 1.0 | 싱크대 보충률은 1x로 정상에 가깝습니다. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 1.0 | 목마름 발생률은 1x로 정상에 가깝습니다. |
+| WeatherFrequency | 3 | 날씨 빈도는 정상입니다. |
+
+<a id="optional-adapter-selection"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `standard`
+- `dynamic_spawns`: `standard_pressure`
+- `encounter_director`: `logistics_inventory_orientation`
+- `lethal_lasers`: `standard_safety`
+
+<a id="day-2---open-floor-storage"></a>
+## 2일차 - 개방형 보관
+
+**프로필 ID:** `logistics_open_floor_storage` **전체 조건:** 유리한 조건 (1.22/5) **일반적인 의미:** 유리한 조건. 환경 압력: 표준 압력이 주요 압력입니다. 생존 압력: 유리한 조건이 그 다음으로 강한 요소입니다. **플레이어 조언:** 탐색, 재입고, 수리 및 다음 재부팅을 준비하는 데 유리한 조건을 사용하세요.
+
+<a id="main-effects-1"></a>
+### 주요 효과
+
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0x).
+- 아이템 내구성이 최고입니다 (4x).
+- 스택 용량이 최고입니다 (8x).
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0.05x).
+- 방어에 대한 적 피해는 평소보다 훨씬 낮습니다. (0.1x).
+
+<a id="domain-ratings-1"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 좋음 (0.99/5) | 적대적인 압력이 평소보다 가벼워졌습니다. |
+| 생존 압박 | 좋음 (1.34/5) | 일상의 생존 요구는 관대합니다. |
+| 자원 압박 | 좋음 (1.08/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 표준 (1.91/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.2/5) | 죽음과 회복 규칙은 관대합니다. |
+
+<a id="encounter-context-1"></a>
+### 대우 상황
+
+- 계층: **가벼운 조우**
+- 테마: **물류 준비**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0.028**
+- 특별 이벤트 기회: **0**
+
+<a id="exact-sandbox-settings-1"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 26 | 기본 인벤토리 크기는 26의 구호 조건입니다. |
+| BonusPerkPoints | 7 | 보너스 혜택 포인트는 7의 구호 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 0.65 | 자제율은 0.65x로 정상보다 낮습니다. |
+| DamageToAlliesMultiplier | 0.0 | 아군 사격 피해는 0x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 0.9 | 낮-밤 주기 속도는 0.9x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 0 | 사망 처벌은 최소화됩니다. |
+| DetectionSpeedMultiplier | 0.5 | 적 감지 속도는 0.5x로 정상보다 훨씬 낮습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.05 | 사망 시 내구성 손실은 0.05x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 0 | 적 정확도가 낮습니다. |
+| EnemyDeployableDamageMultiplier | 0.1 | 적 방어에 대한 피해가 0.1x로 정상보다 훨씬 낮습니다. |
+| EnemyHealthMultiplier | 0.8 | 적 회복력이 0.8x로 정상보다 훨씬 낮습니다. |
+| EnemyPlayerDamageMultiplier | 0.6 | 플레이어가 받는 적 피해는 0.6x로 정상보다 낮습니다. |
+| EnemySpawnRate | 0.4 | 적의 빈도는 0.4x로 정상보다 훨씬 낮습니다. |
+| FatigueSpeedMultiplier | 0.65 | 피로율이 0.65x로 정상보다 낮습니다. |
+| FirstTimeStartingWeapon | 2 | 시작 무기 보급은 표준 압력 2입니다. |
+| FoodSpoilSpeedMultiplier | 0.75 | 음식 부패는 아래입니다. 보통은 0.75x입니다. |
+| GameDifficulty | 1 | 게임 난이도는 표준입니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 0.65 | 허기율은 0.65x로 보통보다 낮습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 4.0 | 아이템 내구도는 4배로 최고입니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.2 | 아이템 무게가 0.2x로 정상보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 1.9 | 경험치 획득량은 1.9x로 정상보다 훨씬 높습니다. |
+| PowerSocketsOffAtNight | false | 밤에도 전원 소켓을 사용할 수 있습니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 1.5 | 냉장고는 1.5배로 평소보다 높습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 2.0 | 싱크대 재충전 속도는 평소보다 훨씬 높습니다. 2x. |
+| StorageByTag | false | 태그된 보관 정리가 비활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 0.65 | 목마름 발생률은 0.65x로 정상보다 낮습니다. |
+| WeatherFrequency | 2 | 날씨 빈도가 가끔 있습니다. |
+
+<a id="optional-adapter-selection-1"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `quiet`
+- `dynamic_spawns`: `quiet_base_safe`
+- `encounter_director`: `logistics_open_floor_storage`
+- `lethal_lasers`: `disabled_or_low_if_supported`
+
+<a id="day-3---hydration-paperwork"></a>
+## 3일차 - 수화 서류 작업
+
+**프로필 ID:** `logistics_hydration_paperwork` **전체 조건:** 표준 압력 (2.0/5) **일반적인 의미:** 표준 압력. 생존 압력: 까다로운 조건이 주요 압력입니다. 환경적 압력: 표준 압력은 그 다음으로 강력한 요소입니다. **플레이어 조언:** 음식과 물을 가지고 다니고, 장거리 여행 전에 휴식을 취하고, 안전한 정지를 계획하세요.
+
+<a id="main-effects-2"></a>
+### 주요 효과
+
+- 스택 용량이 최고입니다 (8x).
+- 싱크대 물은 안전하지 않을 수 있습니다.
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0.25x).
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0.25x).
+- 게임 난이도: 어려움.
+
+<a id="domain-ratings-2"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 표준 (1.85/5) | 적대적인 압력이 정상입니다. |
+| 생존 압박 | 까다로운 (2.72/5) | 배고픔, 갈증, 피로 또는 위생에 더 많은 주의가 필요함. |
+| 자원 압박 | 좋음 (1.59/5) | 공급 및 운반 조건이 정상에 가깝습니다. |
+| 환경적 압박 | 표준 (2.22/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.5/5) | 죽음과 회복 규칙은 관대합니다. |
+
+<a id="encounter-context-2"></a>
+### 대우 상황
+
+- 계층: **보통의 만남**
+- 테마: **물류 바이오 자원**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0.091**
+- 특별 이벤트 기회: **8**
+
+<a id="exact-sandbox-settings-2"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 1.45 | 자제율이 정상보다 높음 1.45x입니다. |
+| DamageToAlliesMultiplier | 0.25 | 아군 사격 피해는 0.25x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.0 | 낮-밤 주기 속도는 1x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 0.9 | 적 탐지 속도는 0.9x로 거의 정상에 가깝습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.25 | 사망 시 내구도 손실은 평소보다 훨씬 낮습니다. 0.25x. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 0.9 | 방어에 대한 적 피해는 0.9x로 정상에 가깝습니다. |
+| EnemyHealthMultiplier | 1.0 | 적 회복력은 1x로 보통에 가깝습니다. |
+| EnemyPlayerDamageMultiplier | 1.1 | 플레이어에 대한 적 피해는 1.1x로 정상에 가깝습니다. |
+| EnemySpawnRate | 0.8 | 적 빈도는 0.8x로 정상보다 낮습니다. |
+| FatigueSpeedMultiplier | 1.1 | 피로율은 1.1x로 보통에 가깝습니다. |
+| FirstTimeStartingWeapon | 0 | 시작 무기 보급이 표준입니다. 압력은 0입니다. |
+| FoodSpoilSpeedMultiplier | 1.25 | 음식 부패도는 1.25x로 보통보다 높습니다. |
+| GameDifficulty | 2 | 게임 난이도가 어렵습니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 1.0 | 배고픔 비율은 1배로 정상에 가깝습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 1.25 | 아이템 내구도는 1.25x로 정상보다 높습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.5 | 아이템 무게는 0.5x로 보통보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 1.6 | 경험치 획득량이 1.6x로 정상보다 높습니다. |
+| PowerSocketsOffAtNight | true | 밤에는 전원 소켓이 꺼집니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 0.75 | 냉동은 0.75x로 정상보다 낮습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 0.25 | 싱크대 재충전 속도는 0.25x로 정상보다 훨씬 낮습니다. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | true | 싱크대 물은 안전하지 않을 수 있습니다. |
+| ThirstSpeedMultiplier | 1.5 | 목마름 비율은 1.5x로 정상보다 높습니다. |
+| WeatherFrequency | 3 | 날씨 빈도는 정상입니다. |
+
+<a id="optional-adapter-selection-2"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `biohazard`
+- `dynamic_spawns`: `biohazard_light`
+- `encounter_director`: `logistics_hydration_paperwork`
+- `lethal_lasers`: `standard_safety`
+
+<a id="day-4---supply-chain-celebration"></a>
+## 4일차 - 공급망 축하
+
+**프로필 ID:** `logistics_supply_chain_celebration` **전체 조건:** 유리한 조건 (1.4/5) **일반적인 의미:** 유리한 조건. 환경 압력: 표준 압력이 주요 압력입니다. 생존 압력: 유리한 조건이 그 다음으로 강한 요소입니다. **플레이어 조언:** 탐색, 재입고, 수리 및 다음 재부팅을 준비하는 데 유리한 조건을 사용하세요.
+
+<a id="main-effects-3"></a>
+### 주요 효과
+
+- 아이템 내구성이 최고입니다 (2.5x).
+- 스택 용량이 최고입니다 (8x).
+- 싱크 리필 비율이 극단적입니다 (2.5x).
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0.05x).
+- 경험치 획득이 보통보다 훨씬 높습니다 (2.1x).
+
+<a id="domain-ratings-3"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 좋음 (1.33/5) | 적대적인 압력이 평소보다 가벼워졌습니다. |
+| 생존 압박 | 좋음 (1.5/5) | 일상의 생존 요구는 관대합니다. |
+| 자원 압박 | 좋음 (1.06/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 표준 (1.93/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.44/5) | 죽음과 회복 규칙은 관대합니다. |
+
+<a id="encounter-context-3"></a>
+### 대우 상황
+
+- 계층: **가벼운 조우**
+- 테마: **물류 전리품 이동성**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0.056**
+- 특별 이벤트 기회: **2**
+
+<a id="exact-sandbox-settings-3"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 0.75 | 자제율은 정상보다 낮습니다. 0.75x. |
+| DamageToAlliesMultiplier | 0.25 | 아군 사격 피해는 0.25x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.0 | 낮-밤 주기 속도는 1x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 0.7 | 적 탐지 속도는 0.7x로 정상보다 낮습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.05 | 사망 시 내구성 손실은 0.05x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 0.5 | 방어에 대한 적 피해는 0.5x로 정상보다 훨씬 낮습니다. |
+| EnemyHealthMultiplier | 0.8 | 적 회복력이 0.8x로 정상보다 훨씬 낮습니다. |
+| EnemyPlayerDamageMultiplier | 0.8 | 플레이어에 대한 적 피해는 0.75x로 정상에 가깝습니다. 0.8x. |
+| EnemySpawnRate | 0.6 | 적 빈도는 0.6x로 정상보다 낮습니다. |
+| FatigueSpeedMultiplier | 0.75 | 피로도는 0.75x로 정상보다 낮습니다. |
+| FirstTimeStartingWeapon | 6 | 시작 무기 보급이 6으로 유리한 조건입니다. |
+| FoodSpoilSpeedMultiplier | 0.6 | 음식 부패가 0.6x로 정상보다 낮습니다. |
+| GameDifficulty | 1 | 게임 난이도는 표준입니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 0.75 | 배고픔 비율은 0.75배로 평소보다 낮습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 2.5 | 아이템 내구도는 2.5배로 극단적입니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.2 | 아이템 무게가 0.2x로 정상보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 2.1 | 경험치 획득량은 2.1배로 정상보다 훨씬 높습니다. |
+| PowerSocketsOffAtNight | false | 밤에도 전원 소켓을 사용할 수 있습니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 1.5 | 냉장고는 1.5배로 평소보다 높습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 2.5 | 싱크대 리필 비율은 2.5x로 극단적입니다. |
+| StorageByTag | false | 태그된 보관 정리가 비활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 0.75 | 갈증 비율은 0.75x로 정상보다 낮습니다. |
+| WeatherFrequency | 2 | 날씨 빈도가 가끔 있습니다. |
+
+<a id="optional-adapter-selection-3"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `loot`
+- `dynamic_spawns`: `low_pressure_loot_day`
+- `encounter_director`: `logistics_supply_chain_celebration`
+- `lethal_lasers`: `low_hazard`
+
+<a id="day-5---security-of-receipts"></a>
+## 5일차 - 영수증 보안
+
+**프로필 ID:** `logistics_security_of_receipts` **전체 조건:** 표준 압력 (1.89/5) **일반적인 의미:** 표준 압력. 환경 압력: 표준 압력이 주요 압력입니다. 전투 압력: 표준 압력은 그 다음으로 강력한 요소입니다. **플레이어 조언:** 기지를 떠나기 전에 전원, 물, 피난처 및 위험 보호 장치를 확인하세요.
+
+<a id="main-effects-4"></a>
+### 주요 효과
+
+- 스택 용량이 최고입니다 (8x).
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0.1x).
+- 게임 난이도: 어려움.
+- 밤에는 전원 소켓이 꺼집니다.
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0.3x).
+
+<a id="domain-ratings-4"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 표준 (2.15/5) | 적대적인 압력이 정상입니다. |
+| 생존 압박 | 표준 (1.94/5) | 일상 생존 요구 사항이 정상에 가깝습니다. |
+| 자원 압박 | 좋음 (1.38/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 표준 (2.17/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.51/5) | 죽음 및 회복 규칙은 정상에 가깝습니다. |
+
+<a id="encounter-context-4"></a>
+### 대우 상황
+
+- 계층: **심각한 전투**
+- 테마: **물류 보안**
+- 최대 활성 그룹: **2**
+- 혼합 만남 기회: **0.119**
+- 특별 이벤트 기회: **14**
+
+<a id="exact-sandbox-settings-4"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 1.0 | 억제율은 1x로 정상에 가깝습니다. |
+| DamageToAlliesMultiplier | 0.1 | 아군 사격 피해는 0.1x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.0 | 낮-밤 주기 속도는 1x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 1.6 | 적 감지 속도가 정상보다 높습니다. 1.6x. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.3 | 사망 시 내구성 손실은 0.3x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 1.0 | 방어에 대한 적의 피해는 1x로 거의 정상입니다. |
+| EnemyHealthMultiplier | 1.1 | 적 회복력은 1.1x로 정상에 가깝습니다. |
+| EnemyPlayerDamageMultiplier | 1.2 | 플레이어에 대한 적 피해는 1.2x로 정상보다 높습니다. |
+| EnemySpawnRate | 1.1 | 적의 빈도는 1.1x로 보통에 가깝습니다. |
+| FatigueSpeedMultiplier | 1.15 | 피로율은 1.15x로 정상에 가깝습니다. |
+| FirstTimeStartingWeapon | 4 | 시작 무기 보급은 4에서 유리한 조건입니다. |
+| FoodSpoilSpeedMultiplier | 1.0 | 음식 부패는 1x로 거의 정상입니다. |
+| GameDifficulty | 2 | 게임 난이도가 어렵습니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 1.0 | 배고픔 비율은 1배로 정상에 가깝습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 1.25 | 아이템 내구도는 1.25x로 정상보다 높습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.5 | 아이템 무게는 0.5x로 보통보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 1.9 | 경험치 획득량은 1.9x로 정상보다 훨씬 높습니다. |
+| PowerSocketsOffAtNight | true | 밤에는 전원 소켓이 꺼집니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 1.0 | 냉장은 1x로 정상에 가깝습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 1.0 | 싱크대 보충률은 1x로 정상에 가깝습니다. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 1.0 | 목마름 발생률은 1x로 정상에 가깝습니다. |
+| WeatherFrequency | 2 | 날씨 빈도가 가끔 있습니다. |
+
+<a id="optional-adapter-selection-4"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `security`
+- `dynamic_spawns`: `security_pressure`
+- `encounter_director`: `logistics_security_of_receipts`
+- `lethal_lasers`: `moderate_hazard`
+
+<a id="day-6---weathered-freight"></a>
+## 6일차 - 풍화된 화물
+
+**프로필 ID:** `logistics_weathered_freight` **전체 조건:** 표준 압력 (1.87/5) **일반적인 의미:** 표준 압력. 환경 압력: 표준 압력이 주요 압력입니다. 생존 압력: 표준 압력이 그 다음으로 강력한 요소입니다. **플레이어 조언:** 기지를 떠나기 전에 전원, 물, 피난처 및 위험 보호 장치를 확인하세요.
+
+<a id="main-effects-5"></a>
+### 주요 효과
+
+- 날씨 빈도: 매우 빈번함.
+- 스택 용량이 최고입니다 (8x).
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0.25x).
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0.25x).
+- 게임 난이도: 어려움.
+
+<a id="domain-ratings-5"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 표준 (1.86/5) | 적대적인 압력이 정상입니다. |
+| 생존 압박 | 표준 (2.0/5) | 일상 생존 요구 사항이 정상에 가깝습니다. |
+| 자원 압박 | 좋음 (1.54/5) | 공급 및 운반 조건이 정상에 가깝습니다. |
+| 환경적 압박 | 표준 (2.52/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.5/5) | 죽음과 회복 규칙은 관대합니다. |
+
+<a id="encounter-context-5"></a>
+### 대우 상황
+
+- 계층: **보통의 만남**
+- 테마: **물류 날씨**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0.091**
+- 특별 이벤트 기회: **10**
+
+<a id="exact-sandbox-settings-5"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 1.0 | 억제율은 1x로 정상에 가깝습니다. |
+| DamageToAlliesMultiplier | 0.25 | 아군 사격 피해는 0.25x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.25 | 낮과 밤의 주기 속도가 평소보다 높습니다. 1.25x. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 0.9 | 적 탐지 속도는 0.9x로 거의 정상에 가깝습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.25 | 사망 시 내구도 손실은 평소보다 훨씬 낮습니다. 0.25x. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 1.0 | 방어에 대한 적의 피해는 1x로 거의 정상입니다. |
+| EnemyHealthMultiplier | 1.0 | 적 회복력은 1x로 보통에 가깝습니다. |
+| EnemyPlayerDamageMultiplier | 1.0 | 플레이어에게 주는 적 피해는 1x로 보통에 가깝습니다. |
+| EnemySpawnRate | 0.8 | 적 빈도는 0.8x로 정상보다 낮습니다. |
+| FatigueSpeedMultiplier | 0.9 | 피로율은 0.9x로 정상에 가깝습니다. |
+| FirstTimeStartingWeapon | 0 | 시작 무기 보급이 표준입니다. 압력은 0입니다. |
+| FoodSpoilSpeedMultiplier | 1.25 | 음식 부패도는 1.25x로 보통보다 높습니다. |
+| GameDifficulty | 2 | 게임 난이도가 어렵습니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 1.1 | 배고픔 비율은 1.1x로 보통에 가깝습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 1.1 | 아이템 내구도는 1.1x로 정상에 가깝습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.5 | 아이템 무게는 0.5x로 보통보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 1.6 | 경험치 획득량이 1.6x로 정상보다 높습니다. |
+| PowerSocketsOffAtNight | true | 밤에는 전원 소켓이 꺼집니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 0.8 | 냉동은 0.8x로 정상보다 낮습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 0.75 | 싱크 리필 비율이 0.75배로 정상보다 낮습니다. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 1.35 | 목마름 발생률은 1.35x로 정상보다 높습니다. |
+| WeatherFrequency | 5 | 날씨 빈도가 매우 잦습니다. |
+
+<a id="optional-adapter-selection-5"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `weather`
+- `dynamic_spawns`: `weather_wandering`
+- `encounter_director`: `logistics_weathered_freight`
+- `lethal_lasers`: `electrical_hazard_light`
+
+<a id="day-7---night-stocktake"></a>
+## 7일차 - 야간 재고 조사
+
+**프로필 ID:** `logistics_night_stocktake` **전체 조건:** 표준 압력 (1.9/5) **일반적인 의미:** 표준 압력. 환경 압력: 표준 압력이 주요 압력입니다. 전투 압력: 표준 압력은 그 다음으로 강력한 요소입니다. **플레이어 조언:** 기지를 떠나기 전에 전원, 물, 피난처 및 위험 보호 장치를 확인하세요.
+
+<a id="main-effects-6"></a>
+### 주요 효과
+
+- 스택 용량이 최고입니다 (8x).
+- 낮-밤 상태: 야간 편향.
+- 경험치 획득이 보통보다 훨씬 높습니다 (2.1x).
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0.2x).
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0.25x).
+
+<a id="domain-ratings-6"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 표준 (2.17/5) | 적대적인 압력이 정상입니다. |
+| 생존 압박 | 표준 (1.9/5) | 일상 생존 요구 사항이 정상에 가깝습니다. |
+| 자원 압박 | 좋음 (1.32/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 표준 (2.33/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.49/5) | 죽음과 회복 규칙은 관대합니다. |
+
+<a id="encounter-context-6"></a>
+### 대우 상황
+
+- 계층: **심각한 전투**
+- 테마: **물류의 밤**
+- 최대 활성 그룹: **2**
+- 혼합 만남 기회: **0.119**
+- 특별 이벤트 기회: **16**
+
+<a id="exact-sandbox-settings-6"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 0.95 | 자제율은 16에서 거의 정상에 가깝습니다. 0.95x. |
+| DamageToAlliesMultiplier | 0.25 | 아군 사격 피해는 0.25x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.0 | 낮-밤 주기 속도는 1x로 정상에 가깝습니다. |
+| DayNightCycleState | 2 | 낮-밤 상태는 밤 편향적입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 1.4 | 적 탐지 속도가 1.4x로 정상보다 높습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.2 | 사망 시 내구성 손실은 0.2x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 1.0 | 방어에 대한 적의 피해는 1x로 거의 정상입니다. |
+| EnemyHealthMultiplier | 1.1 | 적 회복력은 1.1x로 정상에 가깝습니다. |
+| EnemyPlayerDamageMultiplier | 1.2 | 플레이어에 대한 적 피해는 1.2x로 정상보다 높습니다. |
+| EnemySpawnRate | 1.2 | 적의 빈도는 1.45x로 정상에 가깝습니다. 1.2x. |
+| FatigueSpeedMultiplier | 1.2 | 피로 비율은 1.2x로 정상보다 높습니다. |
+| FirstTimeStartingWeapon | 5 | 시작 무기 보급이 5로 유리한 조건입니다. |
+| FoodSpoilSpeedMultiplier | 1.0 | 음식 부패는 1x로 거의 정상입니다. |
+| GameDifficulty | 2 | 게임 난이도가 어렵습니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 0.95 | 배고픔 비율은 0.95x로 정상에 가깝습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 1.5 | 아이템 내구도는 1.5배로 정상보다 높습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.4 | 아이템 무게는 0.4x로 정상보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 2.1 | 경험치 획득량은 2.1배로 정상보다 훨씬 높습니다. |
+| PowerSocketsOffAtNight | false | 밤에도 전원 소켓을 사용할 수 있습니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 1.0 | 냉장은 1x로 정상에 가깝습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 1.0 | 싱크대 보충률은 1x로 정상에 가깝습니다. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 0.95 | 목마름 발생률은 0.95x로 정상에 가깝습니다. |
+| WeatherFrequency | 4 | 날씨 빈도가 잦습니다. |
+
+<a id="optional-adapter-selection-6"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `night`
+- `dynamic_spawns`: `night_pressure`
+- `encounter_director`: `logistics_night_stocktake`
+- `lethal_lasers`: `night_visible_moderate`
+
+<a id="day-8---route-optimization-memo"></a>
+## 8일차 - 경로 최적화 메모
+
+**프로필 ID:** `logistics_route_optimization_memo` **전체 조건:** 유리한 조건 (1.68/5) **일반적인 의미:** 유리한 조건. 환경 압력: 표준 압력이 주요 압력입니다. 전투 압력: 표준 압력은 그 다음으로 강력한 요소입니다. **플레이어 조언:** 탐색, 재입고, 수리 및 다음 재부팅을 준비하는 데 유리한 조건을 사용하세요.
+
+<a id="main-effects-7"></a>
+### 주요 효과
+
+- 낮과 밤의 주기 속도가 극단적입니다 (3x).
+- 스택 용량이 최고입니다 (8x).
+- 경험치 획득이 보통보다 훨씬 높습니다 (2.2x).
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0.15x).
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0.25x).
+
+<a id="domain-ratings-7"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 표준 (1.87/5) | 적대적인 압력이 정상입니다. |
+| 생존 압박 | 좋음 (1.42/5) | 일상의 생존 요구는 관대합니다. |
+| 자원 압박 | 좋음 (1.19/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 표준 (2.56/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.47/5) | 죽음과 회복 규칙은 관대합니다. |
+
+<a id="encounter-context-7"></a>
+### 대우 상황
+
+- 계층: **보통의 만남**
+- 테마: **물류 경로**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0.105**
+- 특별 이벤트 기회: **14**
+
+<a id="exact-sandbox-settings-7"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 0.7 | 자제율은 0.7x로 정상보다 낮습니다. |
+| DamageToAlliesMultiplier | 0.25 | 아군 사격 피해는 0.25x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 3.0 | 낮-밤 주기 속도는 극단적입니다. 3x. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 1.2 | 적 탐지 속도가 1.2x로 정상보다 높습니다. |
+| DisableResearchMinigame | true | 연구 우회가 활성화됩니다. |
+| DurabilityLossOnDeathMultiplier | 0.15 | 사망 시 내구성 손실은 0.15x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 0.8 | 방어에 대한 적 피해는 0.8x로 정상보다 낮습니다. |
+| EnemyHealthMultiplier | 0.8 | 적 회복력이 0.8x로 정상보다 훨씬 낮습니다. |
+| EnemyPlayerDamageMultiplier | 1.0 | 플레이어에게 주는 적 피해는 1x로 보통에 가깝습니다. |
+| EnemySpawnRate | 1.0 | 적의 주파수는 1x로 정상에 가깝습니다. |
+| FatigueSpeedMultiplier | 0.7 | 피로 비율은 0.7x로 정상보다 낮습니다. |
+| FirstTimeStartingWeapon | 6 | 시작 무기 보급이 6으로 유리한 조건입니다. |
+| FoodSpoilSpeedMultiplier | 0.9 | 음식 부패는 0.9x로 정상에 가깝습니다. |
+| GameDifficulty | 2 | 게임 난이도가 어렵습니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 0.7 | 배고픔 비율은 0.7x로 정상보다 낮습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 1.25 | 아이템 내구도는 1.25x로 정상보다 높습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.4 | 아이템 무게는 0.4x로 정상보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 2.2 | 경험치 획득량은 2.2x로 정상보다 훨씬 높습니다. |
+| PowerSocketsOffAtNight | true | 밤에는 전원 소켓이 꺼집니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 1.1 | 냉장고는 1.1x로 정상에 가깝습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 1.5 | 싱크대 리필 속도는 1에서 정상보다 높습니다. 1.5x. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 0.7 | 목마름 발생률은 0.7x로 정상보다 낮습니다. |
+| WeatherFrequency | 3 | 날씨 빈도는 정상입니다. |
+
+<a id="optional-adapter-selection-7"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `speedrun`
+- `dynamic_spawns`: `speedrun_pressure`
+- `encounter_director`: `logistics_route_optimization_memo`
+- `lethal_lasers`: `low_to_moderate_hazard`
+
+<a id="day-9---ration-ledger"></a>
+## 9일차 - 식량 장부
+
+**프로필 ID:** `logistics_ration_ledger` **전체 조건:** 표준 압력 (1.99/5) **일반적인 의미:** 표준 압력. 생존 압력: 까다로운 조건이 주요 압력입니다. 환경적 압력: 표준 압력은 그 다음으로 강력한 요소입니다. **플레이어 조언:** 음식과 물을 가지고 다니고, 장거리 여행 전에 휴식을 취하고, 안전한 정지를 계획하세요.
+
+<a id="main-effects-8"></a>
+### 주요 효과
+
+- 스택 용량이 최고입니다 (8x).
+- 싱크대 물은 안전하지 않을 수 있습니다.
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0.25x).
+- 식품 부패가 정상보다 훨씬 높음 (2x).
+- 밤에는 전원 소켓이 꺼집니다.
+
+<a id="domain-ratings-8"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 표준 (1.72/5) | 적대적인 압력이 정상입니다. |
+| 생존 압박 | 까다로운 (2.78/5) | 배고픔, 갈증, 피로 또는 위생에 더 많은 주의가 필요함. |
+| 자원 압박 | 표준 (1.74/5) | 공급 및 운반 조건이 정상에 가깝습니다. |
+| 환경적 압박 | 표준 (2.17/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.53/5) | 죽음 및 회복 규칙은 정상에 가깝습니다. |
+
+<a id="encounter-context-8"></a>
+### 대우 상황
+
+- 계층: **보통의 만남**
+- 테마: **물류 부족**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0.084**
+- 특별 이벤트 기회: **8**
+
+<a id="exact-sandbox-settings-8"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 1.25 | 자제율은 1.25x로 정상보다 높습니다. |
+| DamageToAlliesMultiplier | 0.25 | 아군 사격 피해는 0.25x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.0 | 낮-밤 주기 속도는 1x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 0.9 | 적 탐지 속도는 0.9x로 거의 정상에 가깝습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.35 | 사망 시 내구성 손실은 0.35x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 1.0 | 방어에 대한 적의 피해는 1x로 거의 정상입니다. |
+| EnemyHealthMultiplier | 1.1 | 적 회복력은 1.1x로 정상에 가깝습니다. |
+| EnemyPlayerDamageMultiplier | 1.1 | 플레이어에 대한 적 피해는 1.1x로 정상에 가깝습니다. |
+| EnemySpawnRate | 0.7 | 적의 빈도가 0.7x로 정상보다 낮습니다. |
+| FatigueSpeedMultiplier | 1.3 | 피로율은 1.3x로 정상보다 높습니다. |
+| FirstTimeStartingWeapon | 0 | 시작 무기 보급이 표준입니다. 압력은 0입니다. |
+| FoodSpoilSpeedMultiplier | 2.0 | 음식 부패는 2x로 정상보다 훨씬 높습니다. |
+| GameDifficulty | 1 | 게임 난이도는 표준입니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 1.4 | 배고픔 비율은 1.4배로 정상보다 높습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 0.75 | 아이템 내구도는 0.75x로 정상보다 낮습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.7 | 아이템 무게는 0.7x로 정상보다 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 1.6 | 경험치 획득량이 1.6x로 정상보다 높습니다. |
+| PowerSocketsOffAtNight | true | 밤에는 전원 소켓이 꺼집니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 0.5 | 냉장고는 평소보다 훨씬 낮습니다. 0.5x. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 0.5 | 싱크 리필 비율은 0.5x로 정상보다 훨씬 낮습니다. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | true | 싱크대 물은 안전하지 않을 수 있습니다. |
+| ThirstSpeedMultiplier | 1.3 | 목마름 비율은 1.3x로 정상보다 높습니다. |
+| WeatherFrequency | 2 | 날씨 빈도가 가끔 있습니다. |
+
+<a id="optional-adapter-selection-8"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `scarcity`
+- `dynamic_spawns`: `scarcity_low_frequency`
+- `encounter_director`: `logistics_ration_ledger`
+- `lethal_lasers`: `standard_safety`
+
+<a id="day-10---recovery-repack"></a>
+## 10일차 - 회수 재포장
+
+**프로필 ID:** `logistics_recovery_repack` **전체 조건:** 유리한 조건 (0.99/5) **일반적인 의미:** 유리한 조건. 환경적 압력: 유리한 조건이 주요 압력입니다. 회복 압력: 유리한 조건이 그 다음으로 강한 요인입니다. **플레이어 조언:** 탐색, 재입고, 수리 및 다음 재부팅을 준비하는 데 유리한 조건을 사용하세요.
+
+<a id="main-effects-9"></a>
+### 주요 효과
+
+- 보너스 특전 포인트는 구호 조건입니다. (10).
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0x).
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0x).
+- 아이템 내구성이 최고입니다 (3x).
+- 스택 용량이 최고입니다 (8x).
+
+<a id="domain-ratings-9"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 구호 (0.79/5) | 적대적인 압력이 평소보다 가벼워졌습니다. |
+| 생존 압박 | 좋음 (1.02/5) | 일상의 생존 요구는 관대합니다. |
+| 자원 압박 | 좋음 (0.88/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 좋음 (1.54/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.19/5) | 죽음과 회복 규칙은 관대합니다. |
+
+<a id="encounter-context-9"></a>
+### 대우 상황
+
+- 계층: **최소한의 만남**
+- 테마: **물류 복구**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0**
+- 특별 이벤트 기회: **0**
+
+<a id="exact-sandbox-settings-9"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 30 | 기본 인벤토리 크기는 30의 구호 조건입니다. |
+| BonusPerkPoints | 10 | 보너스 특전 포인트는 10의 구호 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 0.45 | 자제 비율은 0.45x로 정상보다 훨씬 낮습니다. |
+| DamageToAlliesMultiplier | 0.0 | 아군 사격 피해는 0x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 0.85 | 주야간 주기 속도는 0.85x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 0 | 사망 처벌은 최소화됩니다. |
+| DetectionSpeedMultiplier | 0.4 | 적 탐지 속도는 0.4x로 정상보다 훨씬 낮습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.0 | 사망 시 내구성 손실은 0x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 0 | 적 정확도가 낮습니다. |
+| EnemyDeployableDamageMultiplier | 0.1 | 적 방어에 대한 피해가 0.1x로 정상보다 훨씬 낮습니다. |
+| EnemyHealthMultiplier | 0.7 | 적 회복력은 0.7x로 정상보다 훨씬 낮습니다. |
+| EnemyPlayerDamageMultiplier | 0.3 | 플레이어가 받는 적 피해는 0.3x로 정상보다 훨씬 낮습니다. |
+| EnemySpawnRate | 0.3 | 적 빈도가 0.3x로 평소보다 훨씬 낮습니다. |
+| FatigueSpeedMultiplier | 0.45 | 피로 비율은 0.45x로 정상보다 훨씬 낮습니다. |
+| FirstTimeStartingWeapon | 2 | 시작 무기 보급은 표준 압력 2입니다. |
+| FoodSpoilSpeedMultiplier | 0.4 | 음식 부패율은 0.4x로 정상보다 훨씬 낮습니다. |
+| GameDifficulty | 1 | 게임 난이도는 표준입니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 0.45 | 배고픔 비율은 0.45x로 정상보다 훨씬 낮습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 3.0 | 아이템 내구성은 3배로 극단적입니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.2 | 아이템 무게가 0.2x로 정상보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 2.8 | 경험치 획득은 극단적입니다. 2.8배. |
+| PowerSocketsOffAtNight | false | 밤에도 전원 소켓을 사용할 수 있습니다. |
+| RadiationDealsDamage | false | 방사선 피해는 비활성화됩니다. |
+| RefrigerationEffectivenessMultiplier | 1.8 | 냉장은 1.8x로 정상보다 훨씬 높습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 3.0 | 싱크대 재충전 비율은 3배로 극심합니다. |
+| StorageByTag | false | 태그된 보관 정리가 비활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 0.45 | 목마름 비율은 0.45배로 정상보다 훨씬 낮습니다. |
+| WeatherFrequency | 1 | 날씨 빈도는 거의 없습니다. |
+
+<a id="optional-adapter-selection-9"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `recovery`
+- `dynamic_spawns`: `minimum_pressure`
+- `encounter_director`: `logistics_recovery_repack`
+- `lethal_lasers`: `disabled_or_low_if_supported`
+
+<a id="day-11---safety-label-training"></a>
+## 11일차 - 안전 라벨 교육
+
+**프로필 ID:** `logistics_safety_label_training` **전체 조건:** 유리한 조건 (1.4/5) **일반적인 의미:** 유리한 조건. 환경 압력: 표준 압력이 주요 압력입니다. 생존 압력: 유리한 조건이 그 다음으로 강한 요소입니다. **플레이어 조언:** 탐색, 재입고, 수리 및 다음 재부팅을 준비하는 데 유리한 조건을 사용하세요.
+
+<a id="main-effects-10"></a>
+### 주요 효과
+
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0x).
+- 스택 용량이 최고입니다 (8x).
+- 경험치 획득량이 엄청납니다 (3.6x).
+- 아이템 내구성이 보통보다 훨씬 높습니다 (2.25x).
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0.25x).
+
+<a id="domain-ratings-10"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 좋음 (1.29/5) | 적대적인 압력이 평소보다 가벼워졌습니다. |
+| 생존 압박 | 좋음 (1.58/5) | 일상 생존 요구 사항이 정상에 가깝습니다. |
+| 자원 압박 | 좋음 (0.99/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 표준 (1.96/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.43/5) | 죽음과 회복 규칙은 관대합니다. |
+
+<a id="encounter-context-10"></a>
+### 대우 상황
+
+- 계층: **가벼운 조우**
+- 테마: **물류 훈련**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0.049**
+- 특별 이벤트 기회: **3**
+
+<a id="exact-sandbox-settings-10"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 0.8 | 자제율은 0.8x로 정상보다 낮습니다. |
+| DamageToAlliesMultiplier | 0.25 | 아군 사격 피해는 0.25x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.15 | 주야간 주기 속도는 1.15x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 0.7 | 적 탐지 속도는 0.7x로 정상보다 낮습니다. |
+| DisableResearchMinigame | true | 연구 우회가 활성화됩니다. |
+| DurabilityLossOnDeathMultiplier | 0.0 | 사망 시 내구성 손실은 0x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 0.4 | 방어에 대한 적 피해는 0.4x로 정상보다 훨씬 낮습니다. |
+| EnemyHealthMultiplier | 0.8 | 적 회복력이 0.8x로 정상보다 훨씬 낮습니다. |
+| EnemyPlayerDamageMultiplier | 0.6 | 플레이어가 받는 적 피해는 0.6x로 정상보다 낮습니다. |
+| EnemySpawnRate | 0.7 | 적의 빈도가 0.7x로 정상보다 낮습니다. |
+| FatigueSpeedMultiplier | 0.8 | 피로 비율은 0.8x로 정상보다 훨씬 낮습니다. |
+| FirstTimeStartingWeapon | 6 | 시작 무기 보급이 6으로 유리한 조건입니다. |
+| FoodSpoilSpeedMultiplier | 0.8 | 음식 부패는 0.8x로 정상보다 낮습니다. |
+| GameDifficulty | 1 | 게임 난이도는 표준입니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 0.8 | 배고픔 비율은 0.8x로 정상보다 낮습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 2.25 | 아이템 내구성 2.25x로 정상보다 훨씬 높습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.3 | 아이템 무게는 0.3배로 평소보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 3.6 | 경험치 획득은 3.6x로 극단적입니다. |
+| PowerSocketsOffAtNight | false | 밤에도 전원 소켓을 사용할 수 있습니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 1.3 | 냉동은 1.3x로 정상보다 높습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 2.0 | 싱크대 재충전 속도는 평소보다 훨씬 높습니다. 2x. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 0.8 | 목마름 발생률은 0.8x로 정상보다 낮습니다. |
+| WeatherFrequency | 2 | 날씨 빈도가 가끔 있습니다. |
+
+<a id="optional-adapter-selection-10"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `training`
+- `dynamic_spawns`: `training_targets`
+- `encounter_director`: `logistics_safety_label_training`
+- `lethal_lasers`: `training_hazard`
+
+<a id="day-12---black-lab-logistics-review"></a>
+## 12일차 - Black Lab 물류 검토
+
+**프로필 ID:** `logistics_black_lab_logistics_review` **전체 조건:** 표준 압력 (2.32/5) **일반적인 의미:** 표준 압력입니다. 전투 압력: 까다로운 조건이 주요 압력입니다. 생존 압력: 표준 압력이 그 다음으로 강력한 요소입니다. **플레이어 조언:** 탄약을 휴대하고, 후퇴 경로를 유지하고, 지원되지 않는 전투를 피하세요.
+
+<a id="main-effects-11"></a>
+### 주요 효과
+
+- 게임 난이도: 매우 어렵습니다.
+- 스택 용량이 최고입니다 (8x).
+- 경험치 획득량이 엄청납니다 (2.9x).
+- 싱크대 물은 안전하지 않을 수 있습니다.
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0.15x).
+
+<a id="domain-ratings-11"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 까다로운 (2.83/5) | 적대적인 압력이 높아집니다. 참여하기 전에 준비하세요. |
+| 생존 압박 | 표준 (2.53/5) | 일상 생존 요구 사항이 정상에 가깝습니다. |
+| 자원 압박 | 좋음 (1.45/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 표준 (2.22/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 표준 (1.79/5) | 죽음 및 회복 규칙은 정상에 가깝습니다. |
+
+<a id="encounter-context-11"></a>
+### 대우 상황
+
+- 계층: **극한 조우**
+- 테마: **물류 과중 테스트**
+- 최대 활성 그룹: **2**
+- 혼합 만남 기회: **0.161**
+- 특별 이벤트 기회: **22**
+
+<a id="exact-sandbox-settings-11"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 1.0 | 억제율은 1x로 정상에 가깝습니다. |
+| DamageToAlliesMultiplier | 0.15 | 아군 사격 피해는 0.15배로 평소보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.0 | 낮-밤 주기 속도는 1x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 2 | 죽음 패널티가 무겁습니다. |
+| DetectionSpeedMultiplier | 1.6 | 적 감지 속도가 정상보다 높습니다. 1.6x. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.4 | 사망 시 내구성 손실은 0.4배로 평소보다 훨씬 낮습니다. |
+| EnemyAccuracy | 2 | 적의 정확도는 표준입니다. |
+| EnemyDeployableDamageMultiplier | 1.4 | 방어에 대한 적 피해는 1.4x로 정상보다 높습니다. |
+| EnemyHealthMultiplier | 1.7 | 적 회복력은 1.7x로 정상보다 훨씬 높습니다. |
+| EnemyPlayerDamageMultiplier | 1.9 | 플레이어에 대한 적 피해는 1.9x로 정상보다 훨씬 높습니다. |
+| EnemySpawnRate | 1.6 | 적 빈도는 1.6x로 정상보다 높습니다. |
+| FatigueSpeedMultiplier | 1.15 | 피로율은 1.15x로 정상에 가깝습니다. |
+| FirstTimeStartingWeapon | 1 | 무기 보급 시작은 표준 압력 1입니다. |
+| FoodSpoilSpeedMultiplier | 1.15 | 음식 부패는 1.15x로 보통에 가깝습니다. |
+| GameDifficulty | 3 | 게임 난이도는 매우 어렵습니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 1.15 | 배고픔 비율은 1.15x로 보통에 가깝습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 1.1 | 아이템 내구도는 1.1x로 정상에 가깝습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.5 | 아이템 무게는 0.5x로 보통보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 2.9 | 경험치 획득량은 2.9x로 극심합니다. |
+| PowerSocketsOffAtNight | true | 밤에는 전원 소켓이 꺼집니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 0.85 | 냉장 상태는 0.85x로 정상에 가깝습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 0.75 | 싱크 리필 비율이 0.75배로 정상보다 낮습니다. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | true | 싱크대 물은 안전하지 않을 수 있습니다. |
+| ThirstSpeedMultiplier | 1.15 | 목마름 발생률은 1.15x로 정상에 가깝습니다. |
+| WeatherFrequency | 3 | 날씨 빈도는 정상입니다. |
+
+<a id="optional-adapter-selection-11"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `black_lab`
+- `dynamic_spawns`: `hard_pressure`
+- `encounter_director`: `logistics_black_lab_logistics_review`
+- `lethal_lasers`: `high_hazard`
+
+<a id="day-13---extended-haul-shift"></a>
+## 일 13 - 연장 운송 교대
+
+**프로필 ID:** `logistics_extended_haul_shift` **전체 조건:** 표준 압력 (2.05/5) **일반적인 의미:** 표준 압력. 생존 압력: 까다로운 조건이 주요 압력입니다. 환경적 압력: 표준 압력은 그 다음으로 강력한 요소입니다. **플레이어 조언:** 음식과 물을 가지고 다니고, 장거리 여행 전에 휴식을 취하고, 안전한 정지를 계획하세요.
+
+<a id="main-effects-12"></a>
+### 주요 효과
+
+- 스택 용량이 최고입니다 (8x).
+- 싱크대 물은 안전하지 않을 수 있습니다.
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0.25x).
+- 게임 난이도: 어려움.
+- 밤에는 전원 소켓이 꺼집니다.
+
+<a id="domain-ratings-12"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 표준 (1.88/5) | 적대적인 압력이 정상입니다. |
+| 생존 압박 | 까다로운 (2.93/5) | 배고픔, 갈증, 피로 또는 위생에 더 많은 주의가 필요함. |
+| 자원 압박 | 좋음 (1.69/5) | 공급 및 운반 조건이 정상에 가깝습니다. |
+| 환경적 압박 | 표준 (2.01/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.53/5) | 죽음 및 회복 규칙은 정상에 가깝습니다. |
+
+<a id="encounter-context-12"></a>
+### 대우 상황
+
+- 계층: **보통의 만남**
+- 테마: **물류 지구력**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0.098**
+- 특별 이벤트 기회: **7**
+
+<a id="exact-sandbox-settings-12"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 1.35 | 자제율은 1.35x로 정상보다 높습니다. |
+| DamageToAlliesMultiplier | 0.25 | 아군 사격 피해는 0.25x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 0.3 | 낮-밤 주기 속도는 0.3x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 0.9 | 적 탐지 속도는 0.9x로 거의 정상에 가깝습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.35 | 사망 시 내구성 손실은 0.35x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 0.9 | 방어에 대한 적 피해는 0.9x로 정상에 가깝습니다. |
+| EnemyHealthMultiplier | 1.2 | 적의 탄력성은 1.2x. |
+| EnemyPlayerDamageMultiplier | 1.2 | 플레이어에 대한 적 피해는 1.2x로 정상보다 높습니다. |
+| EnemySpawnRate | 0.7 | 적의 빈도가 0.7x로 정상보다 낮습니다. |
+| FatigueSpeedMultiplier | 1.4 | 피로율이 1.4배로 정상보다 높습니다. |
+| FirstTimeStartingWeapon | 0 | 시작 무기 보급이 표준입니다. 압력은 0입니다. |
+| FoodSpoilSpeedMultiplier | 1.8 | 음식 부패는 1.8x로 정상보다 훨씬 높습니다. |
+| GameDifficulty | 2 | 게임 난이도가 어렵습니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 1.5 | 굶주림 비율은 정상보다 높습니다. 1.5x. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 0.9 | 아이템 내구도는 0.9x로 정상에 가깝습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.7 | 아이템 무게는 0.7x로 정상보다 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 1.8 | 경험치 획득량은 평소보다 훨씬 높습니다. 1.8x. |
+| PowerSocketsOffAtNight | true | 밤에는 전원 소켓이 꺼집니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 0.65 | 냉장고가 0.65x로 정상보다 낮습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 0.35 | 싱크대 리필 비율이 0.35x로 정상보다 훨씬 낮습니다. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | true | 싱크대 물은 안전하지 않을 수 있습니다. |
+| ThirstSpeedMultiplier | 1.5 | 목마름 비율은 1.5x로 정상보다 높습니다. |
+| WeatherFrequency | 2 | 날씨 빈도가 가끔 있습니다. |
+
+<a id="optional-adapter-selection-12"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `attrition`
+- `dynamic_spawns`: `slow_attrition`
+- `encounter_director`: `logistics_extended_haul_shift`
+- `lethal_lasers`: `standard_safety`
+
+<a id="day-14---supply-closet-miracle-audit"></a>
+## 14일차 - 공급실 기적 감사
+
+**프로필 ID:** `logistics_supply_closet_miracle_audit` **전체 조건:** 유리한 조건 (0.97/5) **일반적인 의미:** 유리한 조건. 환경적 압력: 유리한 조건이 주요 압력입니다. 회복 압력: 유리한 조건이 그 다음으로 강한 요인입니다. **플레이어 조언:** 탐색, 재입고, 수리 및 다음 재부팅을 준비하는 데 유리한 조건을 사용하세요.
+
+<a id="main-effects-13"></a>
+### 주요 효과
+
+- 기본 재고 크기는 완화 조건입니다 (40).
+- 보너스 특전 포인트는 구호 조건입니다. (12).
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0x).
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0x).
+- 아이템 내구성이 최고입니다 (6x).
+
+<a id="domain-ratings-13"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 좋음 (0.85/5) | 적대적인 압력이 평소보다 가벼워졌습니다. |
+| 생존 압박 | 좋음 (0.86/5) | 일상의 생존 요구는 관대합니다. |
+| 자원 압박 | 구호 (0.77/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 좋음 (1.58/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.19/5) | 죽음과 회복 규칙은 관대합니다. |
+
+<a id="encounter-context-13"></a>
+### 대우 상황
+
+- 계층: **최소한의 만남**
+- 테마: **물류 완화**
+- 최대 활성 그룹: **1**
+- 혼합 만남 기회: **0**
+- 특별 이벤트 기회: **0**
+
+<a id="exact-sandbox-settings-13"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 40 | 기본 인벤토리 크기는 40의 구호 조건입니다. |
+| BonusPerkPoints | 12 | 보너스 특전 포인트는 구호 조건 12입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 0.35 | 자제율 0.35x로 정상보다 훨씬 낮습니다. |
+| DamageToAlliesMultiplier | 0.0 | 아군 사격 피해는 0x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.0 | 낮-밤 주기 속도는 1x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 0 | 사망 처벌은 최소화됩니다. |
+| DetectionSpeedMultiplier | 0.5 | 적 감지 속도는 0.5x로 정상보다 훨씬 낮습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.0 | 사망 시 내구성 손실은 0x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 0 | 적 정확도가 낮습니다. |
+| EnemyDeployableDamageMultiplier | 0.1 | 적 방어에 대한 피해가 0.1x로 정상보다 훨씬 낮습니다. |
+| EnemyHealthMultiplier | 0.7 | 적 회복력은 0.7x로 정상보다 훨씬 낮습니다. |
+| EnemyPlayerDamageMultiplier | 0.5 | 플레이어가 받는 적 피해는 0.5x로 정상보다 훨씬 낮습니다. |
+| EnemySpawnRate | 0.3 | 적 빈도가 0.3x로 평소보다 훨씬 낮습니다. |
+| FatigueSpeedMultiplier | 0.35 | 피로율은 0.35x로 정상보다 훨씬 낮습니다. |
+| FirstTimeStartingWeapon | 6 | 시작 무기 보급이 6으로 유리한 조건입니다. |
+| FoodSpoilSpeedMultiplier | 0.25 | 음식 부패 0.25x로 정상보다 훨씬 낮습니다. |
+| GameDifficulty | 1 | 게임 난이도는 표준입니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 0.35 | 배고픔 비율은 0.35x로 정상보다 훨씬 낮습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 6.0 | 아이템 내구도가 6배로 극단적입니다. |
+| ItemStackSizeMultiplier | 14 | 스택 용량은 14배로 극단적입니다. |
+| ItemWeightMultiplier | 0.1 | 아이템 무게가 정상보다 훨씬 낮습니다. 0.1x. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 4.1 | 경험치 획득량이 4.1배로 극단적입니다. |
+| PowerSocketsOffAtNight | false | 밤에도 전원 소켓을 사용할 수 있습니다. |
+| RadiationDealsDamage | false | 방사선 피해는 비활성화됩니다. |
+| RefrigerationEffectivenessMultiplier | 2.0 | 냉장 상태는 정상보다 훨씬 높은 2배입니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 5.0 | 싱크대 재충전 비율은 5배로 극단적입니다. |
+| StorageByTag | false | 태그된 보관 정리가 비활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 0.35 | 갈증률은 0.35x로 정상보다 훨씬 낮습니다. |
+| WeatherFrequency | 1 | 날씨 빈도는 거의 없습니다. |
+
+<a id="optional-adapter-selection-13"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `relief`
+- `dynamic_spawns`: `relief_day`
+- `encounter_director`: `logistics_supply_closet_miracle_audit`
+- `lethal_lasers`: `disabled_or_low_if_supported`
+
+<a id="day-15---accuracy-of-count"></a>
+## 15일차 - 수량의 정확성
+
+**프로필 ID:** `logistics_accuracy_of_count` **전체 조건:** 표준 압력 (1.84/5) **일반적인 의미:** 표준 압력. 환경 압력: 표준 압력이 주요 압력입니다. 전투 압력: 표준 압력은 그 다음으로 강력한 요소입니다. **플레이어 조언:** 기지를 떠나기 전에 전원, 물, 피난처 및 위험 보호 장치를 확인하세요.
+
+<a id="main-effects-14"></a>
+### 주요 효과
+
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0x).
+- 스택 용량이 최고입니다 (8x).
+- 경험치 획득이 보통보다 훨씬 높습니다 (2.3x).
+- 게임 난이도: 어려움.
+- 밤에는 전원 소켓이 꺼집니다.
+
+<a id="domain-ratings-14"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 표준 (1.99/5) | 적대적인 압력이 정상입니다. |
+| 생존 압박 | 표준 (1.98/5) | 일상 생존 요구 사항이 정상에 가깝습니다. |
+| 자원 압박 | 좋음 (1.37/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 표준 (2.17/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.51/5) | 죽음 및 회복 규칙은 정상에 가깝습니다. |
+
+<a id="encounter-context-14"></a>
+### 대우 상황
+
+- 계층: **심각한 전투**
+- 테마: **물류 정밀도**
+- 최대 활성 그룹: **2**
+- 혼합 만남 기회: **0.119**
+- 특별 이벤트 기회: **14**
+
+<a id="exact-sandbox-settings-14"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 1.0 | 억제율은 1x로 정상에 가깝습니다. |
+| DamageToAlliesMultiplier | 0.0 | 아군 사격 피해는 0x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.0 | 낮-밤 주기 속도는 1x로 정상에 가깝습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 1 | 사망 패널티가 표준입니다. |
+| DetectionSpeedMultiplier | 1.2 | 적 탐지 속도가 1.2x로 정상보다 높습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.3 | 사망 시 내구성 손실은 0.3x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 1 | 적의 정확도가 감소합니다. |
+| EnemyDeployableDamageMultiplier | 0.8 | 방어에 대한 적 피해는 0.8x로 정상보다 낮습니다. |
+| EnemyHealthMultiplier | 0.9 | 적 회복력은 0.9x로 정상에 가깝습니다. |
+| EnemyPlayerDamageMultiplier | 1.4 | 플레이어가 받는 적 피해는 1.4x로 정상보다 높습니다. |
+| EnemySpawnRate | 0.9 | 적 빈도는 0.9x로 정상에 가깝습니다. |
+| FatigueSpeedMultiplier | 1.25 | 피로율은 1.25x로 정상보다 높습니다. |
+| FirstTimeStartingWeapon | 4 | 시작 무기 보급은 4에서 유리한 조건입니다. |
+| FoodSpoilSpeedMultiplier | 1.0 | 음식 부패는 1x로 거의 정상입니다. |
+| GameDifficulty | 2 | 게임 난이도가 어렵습니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 1.0 | 배고픔 비율은 1배로 정상에 가깝습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 1.0 | 아이템 내구성은 1x로 정상에 가깝습니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.5 | 아이템 무게는 0.5x로 보통보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 2.3 | 경험치 획득이 정상보다 훨씬 높은 2.3x입니다. |
+| PowerSocketsOffAtNight | true | 밤에는 전원 소켓이 꺼집니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 1.0 | 냉장은 1x로 정상에 가깝습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 1.0 | 싱크대 보충률은 1x로 정상에 가깝습니다. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | false | 싱크대 물은 이 규칙에 의해 오염되지 않습니다. |
+| ThirstSpeedMultiplier | 1.0 | 목마름 발생률은 1x로 정상에 가깝습니다. |
+| WeatherFrequency | 2 | 날씨 빈도가 가끔 있습니다. |
+
+<a id="optional-adapter-selection-14"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `accuracy`
+- `dynamic_spawns`: `precision_patrols`
+- `encounter_director`: `logistics_accuracy_of_count`
+- `lethal_lasers`: `moderate_hazard`
+
+<a id="day-16---experimental-inventory"></a>
+## 16일차 - 실험적 재고
+
+**프로필 ID:** `logistics_experimental_inventory` **전체 조건:** 표준 압력 (2.03/5) **일반적인 의미:** 표준 압력. 환경 압력: 표준 압력이 주요 압력입니다. 생존 압력: 표준 압력이 그 다음으로 강력한 요소입니다. **플레이어 조언:** 기지를 떠나기 전에 전원, 물, 피난처 및 위험 보호 장치를 확인하세요.
+
+<a id="main-effects-15"></a>
+### 주요 효과
+
+- 게임 난이도: 매우 어렵습니다.
+- 일부 방사선에는 가시적 경고가 부족할 수 있습니다.
+- 날씨 빈도: 매우 빈번함.
+- 아군 사격 피해는 정상보다 훨씬 낮습니다. (0x).
+- 사망 시 내구성 손실은 정상보다 훨씬 낮습니다. (0x).
+
+<a id="domain-ratings-15"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 표준 (2.2/5) | 적대적인 압력이 정상입니다. |
+| 생존 압박 | 표준 (2.36/5) | 일상 생존 요구 사항이 정상에 가깝습니다. |
+| 자원 압박 | 좋음 (1.14/5) | 보급품 및 운송 조건이 좋습니다. |
+| 환경적 압박 | 표준 (2.59/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 좋음 (1.67/5) | 죽음 및 회복 규칙은 정상에 가깝습니다. |
+
+<a id="encounter-context-15"></a>
+### 대우 상황
+
+- 계층: **극한 조우**
+- 테마: **실험적 물류**
+- 최대 활성 그룹: **2**
+- 혼합 만남 기회: **0.154**
+- 특별 이벤트 기회: **20**
+
+<a id="exact-sandbox-settings-15"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 1.2 | 자제율은 보통보다 높습니다. 1.2x. |
+| DamageToAlliesMultiplier | 0.0 | 아군 사격 피해는 0x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.5 | 낮-밤 주기 속도는 1.5x로 정상보다 높습니다. |
+| DayNightCycleState | 1 | 낮-밤 상태는 낮에 편향되어 있습니다. |
+| DeathPenalties | 2 | 죽음 패널티가 무겁습니다. |
+| DetectionSpeedMultiplier | 0.5 | 적 감지 속도는 0.5x로 정상보다 훨씬 낮습니다. |
+| DisableResearchMinigame | true | 연구 우회가 활성화됩니다. |
+| DurabilityLossOnDeathMultiplier | 0.0 | 사망 시 내구성 손실은 0x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 2 | 적의 정확도는 표준입니다. |
+| EnemyDeployableDamageMultiplier | 0.7 | 적 방어에 대한 피해는 0.7x로 정상보다 낮습니다. |
+| EnemyHealthMultiplier | 1.3 | 적 회복력이 1.3배로 정상보다 높습니다. |
+| EnemyPlayerDamageMultiplier | 0.9 | 플레이어에 대한 적 피해는 0.9x로 거의 정상에 가깝습니다. |
+| EnemySpawnRate | 1.1 | 적의 빈도는 1.1x로 보통에 가깝습니다. |
+| FatigueSpeedMultiplier | 0.8 | 피로 비율은 0.8x로 정상보다 훨씬 낮습니다. |
+| FirstTimeStartingWeapon | 6 | 시작 무기 보급이 6으로 유리한 조건입니다. |
+| FoodSpoilSpeedMultiplier | 0.4 | 음식 부패율은 0.4x로 정상보다 훨씬 낮습니다. |
+| GameDifficulty | 3 | 게임 난이도는 매우 어렵습니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 0.8 | 배고픔 비율은 0.8x로 정상보다 낮습니다. |
+| InvisibleRadiation | true | 일부 방사선에는 가시적 경고가 부족할 수 있습니다. |
+| ItemDurabilityMultiplier | 5.0 | 아이템 내구도는 5배로 최고입니다. |
+| ItemStackSizeMultiplier | 8 | 쌓기 용량은 8배로 최고입니다. |
+| ItemWeightMultiplier | 0.1 | 아이템 무게가 정상보다 훨씬 낮습니다. 0.1x. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 4.6 | 경험치 획득이 극심합니다. 4.6x. |
+| PowerSocketsOffAtNight | false | 밤에도 전원 소켓을 사용할 수 있습니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 2.0 | 냉장 상태는 정상보다 훨씬 높은 2배입니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 0.0 | 싱크 리필 비율은 0x로 정상보다 훨씬 낮습니다. |
+| StorageByTag | false | 태그된 보관 정리가 비활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | true | 싱크대 물은 안전하지 않을 수 있습니다. |
+| ThirstSpeedMultiplier | 1.2 | 갈증률은 정상보다 높습니다. 1.2x. |
+| WeatherFrequency | 5 | 날씨 빈도가 매우 잦습니다. |
+
+<a id="optional-adapter-selection-15"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `experimental`
+- `dynamic_spawns`: `experimental_mixed`
+- `encounter_director`: `logistics_experimental_inventory`
+- `lethal_lasers`: `weird_cycle_or_standard`
+
+<a id="day-17---final-logistics-exam"></a>
+## 17일차 - 최종 물류 시험
+
+**프로필 ID:** `logistics_final_logistics_exam` **전체 조건:** 표준 압력 (2.55/5) **일반적인 의미:** 표준 압력. 전투 압력: 까다로운 조건이 주요 압력입니다. 생존 압력: 까다로운 조건이 그 다음으로 강력한 요인입니다. **플레이어 조언:** 탄약을 휴대하고, 후퇴 경로를 유지하고, 지원되지 않는 전투를 피하세요.
+
+<a id="main-effects-16"></a>
+### 주요 효과
+
+- 게임 난이도: 매우 어렵습니다.
+- 날씨 빈도: 매우 빈번함.
+- 스택 용량이 최고입니다 (14x).
+- 경험치 획득량이 엄청납니다 (4.3x).
+- 싱크대 물은 안전하지 않을 수 있습니다.
+
+<a id="domain-ratings-16"></a>
+### 도메인 등급
+
+| 지역 | 등급 | 의미 |
+|---|---|---|
+| 전투 압박 | 까다로운 (3.19/5) | 적대적인 압력이 높아집니다. 참여하기 전에 준비하세요. |
+| 생존 압박 | 까다로운 (2.72/5) | 배고픔, 갈증, 피로 또는 위생에 더 많은 주의가 필요함. |
+| 자원 압박 | 좋음 (1.57/5) | 공급 및 운반 조건이 정상에 가깝습니다. |
+| 환경적 압박 | 표준 (2.55/5) | 환경 조건이 정상에 가깝습니다. |
+| 회복 압력 | 표준 (1.81/5) | 죽음 및 회복 규칙은 정상에 가깝습니다. |
+
+<a id="encounter-context-16"></a>
+### 대우 상황
+
+- 계층: **캡스톤 조우**
+- 테마: **물류 최종 결정**
+- 최대 활성 그룹: **2**
+- 혼합 만남 기회: **0.196**
+- 특별 이벤트 기회: **30**
+
+<a id="exact-sandbox-settings-16"></a>
+### 정확한 샌드박스 설정
+
+| 설정 | 원시 값 | 번역된 의미 |
+|---|---:|---|
+| AllowCharacterReset | true | 문자 재설정은 계속 가능합니다. |
+| AllowIronMode | false | 아이언 모드가 비활성화되었습니다. |
+| AllowPagers | true | 호출기가 사용 가능합니다. |
+| AllowRecipeSharing | true | 레시피 공유가 가능합니다. |
+| AllowTransmog | true | 외관 맞춤화가 가능합니다. |
+| BaseInventorySize | 18 | 기본 인벤토리 크기는 18에서 유리한 조건입니다. |
+| BonusPerkPoints | 4 | 보너스 특전 포인트는 4의 유리한 조건입니다. |
+| BridgeSupports | 0 | 교량 지원 한계는 표준 압력 0입니다. |
+| ContinenceSpeedMultiplier | 1.1 | 자제율은 1.1x로 정상에 가깝습니다. |
+| DamageToAlliesMultiplier | 0.1 | 아군 사격 피해는 0.1x로 정상보다 훨씬 낮습니다. |
+| DayNightCycleSpeedMultiplier | 1.45 | 낮-밤 주기 속도는 1.45x로 정상보다 높습니다. |
+| DayNightCycleState | 0 | 낮-밤 상태는 일반적인 주기입니다. |
+| DeathPenalties | 2 | 죽음 패널티가 무겁습니다. |
+| DetectionSpeedMultiplier | 1.9 | 적 탐지 속도는 1.9x로 정상보다 훨씬 높습니다. |
+| DisableResearchMinigame | false | 연구에서는 일반 미니게임을 사용합니다. |
+| DurabilityLossOnDeathMultiplier | 0.5 | 사망 시 내구성 손실은 0.5x로 정상보다 훨씬 낮습니다. |
+| EnemyAccuracy | 2 | 적의 정확도는 표준입니다. |
+| EnemyDeployableDamageMultiplier | 2.0 | 방어에 대한 적 피해는 2x로 정상보다 훨씬 높습니다. |
+| EnemyHealthMultiplier | 2.1 | 적 회복력은 2.1x로 정상보다 훨씬 높습니다. |
+| EnemyPlayerDamageMultiplier | 2.2 | 플레이어에 대한 적 피해는 정상보다 훨씬 높습니다. 2.2x. |
+| EnemySpawnRate | 2.1 | 적 빈도는 2.1x로 정상보다 훨씬 높습니다. |
+| FatigueSpeedMultiplier | 1.25 | 피로율은 1.25x로 정상보다 높습니다. |
+| FirstTimeStartingWeapon | 0 | 시작 무기 보급이 표준입니다. 압력은 0입니다. |
+| FoodSpoilSpeedMultiplier | 1.6 | 음식 부패율은 1.6x로 정상보다 높습니다. |
+| GameDifficulty | 3 | 게임 난이도는 매우 어렵습니다. |
+| HardcoreMode | false | 하드코어 모드가 비활성화됩니다. |
+| HomeWorlds | true | 홈 월드 동작이 활성화됩니다. |
+| HostAccessPlayerCorpses | true | 호스트는 복구 지원을 위해 플레이어 시체에 접근할 수 있습니다. |
+| HungerSpeedMultiplier | 1.35 | 배고픔 비율은 1.35x로 정상보다 높습니다. |
+| InvisibleRadiation | false | 이 규칙에 따라 방사선이 보이지 않게 되지 않습니다. |
+| ItemDurabilityMultiplier | 1.0 | 아이템 내구성은 1x로 정상에 가깝습니다. |
+| ItemStackSizeMultiplier | 14 | 스택 용량은 14배로 극단적입니다. |
+| ItemWeightMultiplier | 0.5 | 아이템 무게는 0.5x로 보통보다 훨씬 낮습니다. |
+| LootRespawnEnabled | true | 수집 후 전리품이 돌아올 수 있습니다. |
+| PlayerFurnitureDestruction | false | 플레이어가 제작한 가구는 이 규칙으로부터 보호됩니다. |
+| PlayerXPGainMultiplier | 4.3 | 경험치 획득량이 4.3배로 극심합니다. |
+| PowerSocketsOffAtNight | true | 밤에는 전원 소켓이 꺼집니다. |
+| RadiationDealsDamage | true | 방사선으로 인해 손상이 발생합니다. |
+| RefrigerationEffectivenessMultiplier | 0.6 | 냉장고는 0.6x로 정상보다 낮습니다. |
+| ShowDeathMessages | true | 사망 알림 표시됩니다. |
+| SinkRefillRate | 0.5 | 싱크 리필 비율은 0.5x로 정상보다 훨씬 낮습니다. |
+| StorageByTag | true | 태그된 보관 정리가 활성화됩니다. |
+| StructuralSupportLimit | 0 | 구조적 지지 한계는 표준 압력 0입니다. |
+| TaintedSinkWater | true | 싱크대 물은 안전하지 않을 수 있습니다. |
+| ThirstSpeedMultiplier | 1.35 | 목마름 발생률은 1.35x로 정상보다 높습니다. |
+| WeatherFrequency | 5 | 날씨 빈도가 매우 잦습니다. |
+
+<a id="optional-adapter-selection-16"></a>
+### 선택적 어댑터 선택
+
+- `ante_up`: `capstone`
+- `dynamic_spawns`: `capstone_pressure`
+- `encounter_director`: `logistics_final_logistics_exam`
+- `lethal_lasers`: `overcharged_high_hazard`

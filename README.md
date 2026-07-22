@@ -18,7 +18,7 @@ This is an alpha release. Its named installation, rotation, recovery, and
 adapter paths are tested, while compatibility and usability continue to be
 improved. Keep a normal world backup before installing or updating it.
 
-**Languages:** [Choose one of 27 reading paths](docs/locales/README.md)
+**Languages:** [Choose one of 27 reading paths](docs/locales/LANGUAGES.md)
 
 ## Choose one of two downloads
 
