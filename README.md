@@ -164,7 +164,7 @@ of them with `external_mods.enabled = false` in
 
 **Studio and media**
 
-- [Olmteka Studio](https://studio.speclang.pro/)
+- [Olmteka Studio](https://studio.olmteka.com/)
 - [Featured RandomDay video](https://www.youtube.com/watch?v=1HsnSpSSl80)
 
 **Project policies and credits**
